@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Shivneri Fresh - Premium Fresh Supply</title>
+  <meta name="description" content="Shivneri Fresh - Premium fresh supply ordering. Direct WhatsApp checkout, trusted by cafes and restaurants." />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- =========================
+  HEADER
+  ========================= -->
+  <header class="site-header">
+    <div class="container header-wrap">
+      <div class="brand-block">
+        <p class="eyebrow">Fresh Supply Partner</p>
+        <img class="brand-logo" id="store-name" src="images/logo/shivneri-logo.png" alt="Shivneri Fresh">
+        <p class="brand-subtitle">Fresh supplies for cafes, restaurants &amp; kitchens</p>
+      </div>
+
+      <div class="header-actions">
+        <a id="header-call-btn" class="header-btn outline-btn" href="tel:+919867378209">Call</a>
+        <a id="header-whatsapp-btn" class="header-btn solid-btn" href="https://wa.me/919867378209" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================
+  HERO
+  ========================= -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-slider" id="hero-slider">
+        <div class="hero-slide active" style="background-image: url('images/hero/hero-banner-1.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/hero/hero-banner-2.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/hero/hero-banner-3.jpg');"></div>
+
+          <div class="hero-actions">
+            <a href="#products-section" class="hero-btn solid-btn">View Products</a>
+            <a id="hero-whatsapp-btn" href="https://wa.me/919867378209" target="_blank" rel="noopener" class="hero-btn outline-btn">Chat on WhatsApp</a>
+          </div>
+
+          <div class="hero-points">
+            <span>Direct ordering</span>
+            <span>Mobile friendly</span>
+            <span>Quick checkout</span>
+          </div>
+        </div>
+
+        <div class="hero-dots" id="hero-dots" aria-label="Hero slide navigation"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+  OFFER SECTION
+  ========================= -->
+  <section class="offers-section" id="offers-section">
+    <div class="container">
+      <div class="offers-wrap">
+        <div class="section-head offers-head">
+          <p class="eyebrow">Limited Time Deals</p>
+          <h2>Special Offers</h2>
+        </div>
+
+        <div id="offer-list" class="offer-grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+  SEARCH & FILTERS
+  ========================= -->
+  <section class="search-section">
+    <div class="container">
+      <div class="search-card">
+        <input type="text" id="searchInput" placeholder="Search products..." />
+      </div>
+    </div>
+  </section>
+
+  <section id="products-section" class="category-showcase-section">
+    <div class="container">
+      <div class="section-head category-showcase-head">
+        <p class="eyebrow">Browse Faster</p>
+        <h2>Shop by category</h2>
+      </div>
+
+      <div id="category-grid" class="category-grid" aria-label="Shop by category"></div>
+    </div>
+  </section>
+
+  <!-- Category Filter -->
+  <section class="filter-section hidden" aria-hidden="true">
+    <div class="container">
+      <div class="category-scroll-shell">
+        <button
+          id="scroll-left"
+          class="scroll-btn scroll-btn-left"
+          type="button"
+          aria-label="Scroll categories left"
+        >
+          <span aria-hidden="true">&#8249;</span>
+        </button>
+
+        <div class="filter-scroll" id="category-scroll">
+          <button class="filter-btn active" data-filter="all">All Products</button>
+          <div id="category-filters"></div>
+        </div>
+
+        <button
+          id="scroll-right"
+          class="scroll-btn scroll-btn-right"
+          type="button"
+          aria-label="Scroll categories right"
+        >
+          <span aria-hidden="true">&#8250;</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+  PRODUCTS
+  ========================= -->
+  <main id="category-items-section" class="products-section hidden">
+    <div class="container">
+      <div class="category-items-head">
+        <button id="category-back-btn" class="category-back-btn" type="button" aria-label="Go back to categories">
+          <span aria-hidden="true">&#8249;</span>
+        </button>
+
+        <div class="category-items-copy">
+          <p class="eyebrow">Shop by category</p>
+          <h2 id="category-view-title">Category</h2>
+        </div>
+      </div>
+
+      <div id="product-list" class="product-grid"></div>
+    </div>
+  </main>
+
+  <!-- =========================
+  CART V2
+  ========================= -->
+
+  <!-- Floating Cart Bar -->
+  <button id="cart-bar" class="cart-bar hidden" type="button" aria-label="Open cart">
+    <div class="cart-bar-left">
+      <span id="cart-bar-count" class="cart-bar-count">0 items</span>
+      <span class="cart-bar-text">View Cart</span>
+    </div>
+    <strong id="cart-bar-total" class="cart-bar-total">â‚¹0</strong>
+  </button>
+
+  <!-- Cart Drawer -->
+  <div id="cart-drawer" class="cart-drawer" aria-hidden="true">
+    <div id="cart-backdrop" class="cart-backdrop"></div>
+
+    <aside class="cart-panel" role="dialog" aria-label="Shopping cart">
+      <!-- Header -->
+      <div class="cart-header">
+        <div>
+          <p class="cart-mini-title">SHIVNERI FRESH</p>
+          <h2 class="cart-title">Your Cart</h2>
+        </div>
+        <button id="close-cart-btn" class="close-cart-btn" type="button" aria-label="Close cart">âœ•</button>
+      </div>
+
+      <!-- Full Scroll Area -->
+      <div class="cart-scroll-area">
+        <!-- Items -->
+        <div id="cart-items" class="cart-items">
+          <div class="cart-empty">Your cart is empty.</div>
+        </div>
+
+        <!-- Summary -->
+        <div class="cart-summary">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <strong id="cart-subtotal">â‚¹0</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Delivery Fee</span>
+            <strong id="cart-delivery">â‚¹0</strong>
+          </div>
+
+          <div class="summary-row total-row">
+            <span>Total</span>
+            <strong id="cart-total">â‚¹0</strong>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="cart-form">
+          <div class="field-group">
+            <label>Order Type</label>
+            <div class="order-type-row">
+              <label class="order-type-pill">
+                <input type="radio" name="orderType" value="Delivery" checked />
+                <span>Delivery</span>
+              </label>
+
+              <label class="order-type-pill">
+                <input type="radio" name="orderType" value="Pickup" />
+                <span>Pickup</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="cart-name">Name</label>
+            <input type="text" id="cart-name" placeholder="Enter your name" />
+          </div>
+
+          <div class="field-group">
+            <label for="cart-phone">Phone</label>
+            <input type="tel" id="cart-phone" placeholder="Enter your phone number" />
+          </div>
+
+          <div class="field-group">
+            <label for="cart-address">Address</label>
+            <textarea id="cart-address" rows="3" placeholder="Enter delivery address"></textarea>
+          </div>
+
+          <div class="field-group">
+            <label for="cart-note">Notes</label>
+            <textarea id="cart-note" rows="3" placeholder="Any special instructions"></textarea>
+          </div>
+
+          <button id="checkout-btn" class="checkout-btn" type="button">Order on WhatsApp</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- =========================
+  FOOTER
+  ========================= -->
+  <section class="proof-section" aria-labelledby="proof-title">
+    <div class="container">
+      <div class="proof-wrap">
+        <div class="section-head proof-head">
+          <p class="eyebrow">Buyer Confidence</p>
+          <h2 id="proof-title">Why businesses choose Shivneri Fresh</h2>
+        </div>
+
+        <div class="proof-grid">
+          <p class="proof-point">Bulk supply support</p>
+          <p class="proof-point">Fast WhatsApp ordering</p>
+          <p class="proof-point">Range for cafes &amp; kitchens</p>
+          <p class="proof-point">Reliable repeat supply</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-wrap">
+        <div class="footer-section">
+          <h4>About Shivneri Fresh</h4>
+          <p>Premium fresh supply partner for cafes, restaurants, and kitchens. Direct ordering made simple and fast.</p>
+          <p>For cafes, restaurants &amp; cloud kitchens</p>
+          <p>Serving Vashi, Navi Mumbai and nearby business areas</p>
+          <a href="tel:+919967538209" class="footer-cta">Call Now</a>
+        </div>
+
+        <div class="footer-section">
+          <h4>Business Info</h4>
+          <p>Business Hours: 9 AM – 9 PM</p>
+          <p><a href="https://wa.me/919867378209" target="_blank" rel="noopener">Fast ordering on WhatsApp</a></p>
+        </div>
+
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p><a href="tel:+919967538209">Call: +91 99675 38209</a></p>
+        <p><a href="https://wa.me/919867378209" target="_blank" rel="noopener">WhatsApp: +91 98673 78209</a></p>
+        <p><a href="mailto:info@shivnerifresh.org">Email: info@shivnerifresh.org</a></p>
+        <p>A-4 Mafco Market,<br>Opp Yogi Executive Hotel, Sector 18,<br>Vashi, Navi Mumbai 400705,<br>Maharashtra, India</p>
+      </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Shivneri Fresh. All rights reserved. Fast, fresh, and reliable business supply.</p>
+        <p class="footer-credit">Website by <a href="https://ashokrasali.com" target="_blank" rel="noopener noreferrer">ashokrasali.com</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================
+  PRODUCT IMAGE MODAL
+  ========================= -->
+  <div id="image-modal" class="image-modal" aria-hidden="true">
+    <div id="image-modal-backdrop" class="image-modal-backdrop"></div>
+
+    <div class="image-modal-dialog" role="dialog" aria-modal="true" aria-label="Product image preview">
+      <button
+        id="image-modal-close"
+        class="image-modal-close"
+        type="button"
+        aria-label="Close product image preview"
+      >
+        X
+      </button>
+
+      <img id="image-modal-preview" class="image-modal-preview" src="" alt="" />
+    </div>
+  </div>
+
+  <script src="app.js?v=20260412"></script>
+</body>
+</html>
+
+
