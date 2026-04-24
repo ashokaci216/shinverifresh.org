@@ -350,7 +350,7 @@
           "name": "Japanese Sauces",
           "image": "images/categories/japanese-sauces.jpg",
           "items": [
-            {"id": "kikkoman-soya-sauce-1-ltr","brand": "Kikkoman","name": "Kikkoman Soya Sauce 1 ltr","unit": "1 ltr","available": true,"image": "images/products/kikkoman-soya-sauce-1-ltr.jpg","slabs": [{"minQty": 1,"price": 320.0},{"minQty": 6,"price": 304.0},{"minQty": 12,"price": 288.0}]},
+            {"id": "kikkoman-soya-sauce-1-ltr","brand": "Kikkoman","name": "Kikkoman Soya Sauce 1 ltr","unit": "1 ltr","available": true,"image": "images/products/kikkoman-soya-sauce-1-ltr.jpg","slabs": [{"minQty": 1,"price": 410.0},{"minQty": 6,"price": 390.0},{"minQty": 12,"price": 360.0}]},
             {"id": "kikkoman-teriyaki-sauce-1-ltr","brand": "Kikkoman","name": "Kikkoman Teriyaki Sauce 1 ltr","unit": "1 ltr","available": true,"image": "images/products/kikkoman-teriyaki-sauce-1-ltr.jpg","slabs": [{"minQty": 1,"price": 380.0},{"minQty": 6,"price": 361.0},{"minQty": 12,"price": 342.0}]}
           ]
         }
