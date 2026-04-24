@@ -6,6 +6,8 @@ Uses menu.json as the single product source for filters, search, cart, and Whats
 const DELIVERY_FEE = 40;
 const DELIVERY_FREE_MINIMUM = 300;
 const MENU_DATA_VERSION = '20260422';
+const STORE_DISPLAY_NAME = 'Shivneri Fresh';
+const CHECKOUT_WHATSAPP_NUMBER = '919867378209';
 const DEFAULT_OFFER_PRODUCT_IDS = [
   'one-dream-tortilla',
   'wg-premium-veg-mayo',
@@ -787,13 +789,13 @@ async function loadMenuData() {
 }
 
 function updateStoreInfo() {
-  if (!storeData || !storeData.store) return;
+  const store = storeData?.store || {};
+  const whatsappNumber = String(store.whatsapp || CHECKOUT_WHATSAPP_NUMBER).replace(/\D/g, '');
+  const phoneNumber = store.phone || '+919867378209';
+  const whatsappUrl = `https://wa.me/${whatsappNumber || CHECKOUT_WHATSAPP_NUMBER}`;
+  const phoneUrl = `tel:${phoneNumber}`;
 
-  const store = storeData.store;
-  const whatsappUrl = `https://wa.me/${store.whatsapp}`;
-  const phoneUrl = `tel:${store.phone}`;
-
-  if (storeName) storeName.alt = store.name;
+  if (storeName) storeName.alt = store.name || STORE_DISPLAY_NAME;
   if (headerCallBtn) headerCallBtn.href = phoneUrl;
   if (headerWhatsappBtn) headerWhatsappBtn.href = whatsappUrl;
   if (heroWhatsappBtn) heroWhatsappBtn.href = whatsappUrl;
@@ -1217,56 +1219,83 @@ function buildWhatsAppMessage() {
   const subtotal = getSubtotal();
   const deliveryFee = getDeliveryFee();
   const grandTotal = getGrandTotal();
+  const checkoutStoreName = storeData?.store?.name || STORE_DISPLAY_NAME;
 
   const name = cartName.value.trim();
   const phone = cartPhone.value.trim();
   const address = cartAddress.value.trim();
   const note = cartNote.value.trim();
 
-  let message = `*${storeData.store.name}*%0A`;
-  message += `*New Order*%0A%0A`;
+  let message = `*${checkoutStoreName}*\n`;
+  message += `*New Order*\n\n`;
 
   getCartArray().forEach(item => {
     const unitText = item.selectedUnit ? ` (${item.selectedUnit})` : '';
     const itemPrice = getItemPrice(item, item.qty);
-    message += `${item.qty} x ${item.name}${unitText} - ${formatPrice(itemPrice * item.qty)}%0A`;
+    message += `${item.qty} x ${item.name}${unitText} - ${formatPrice(itemPrice * item.qty)}\n`;
   });
 
-  message += `%0A*Subtotal:* ${formatPrice(subtotal)}%0A`;
-  message += `*Delivery Fee:* ${formatPrice(deliveryFee)}%0A`;
-  message += `*Total:* ${formatPrice(grandTotal)}%0A%0A`;
+  message += `\n*Subtotal:* ${formatPrice(subtotal)}\n`;
+  message += `*Delivery Fee:* ${formatPrice(deliveryFee)}\n`;
+  message += `*Total:* ${formatPrice(grandTotal)}\n\n`;
 
-  message += `*Order Type:* ${orderType}%0A`;
-  message += `*Name:* ${name || '-'}%0A`;
-  message += `*Phone:* ${phone || '-'}%0A`;
-  message += `*Address:* ${address || '-'}%0A`;
-  message += `*Notes:* ${note || '-'}%0A`;
+  message += `*Order Type:* ${orderType}\n`;
+  message += `*Name:* ${name || '-'}\n`;
+  message += `*Phone:* ${phone || '-'}\n`;
+  message += `*Address:* ${address || '-'}\n`;
+  message += `*Notes:* ${note || '-'}\n`;
 
-  return `https://wa.me/${storeData.store.whatsapp}?text=${message}`;
+  return `https://wa.me/${CHECKOUT_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
-function handleCheckout() {
-  if (getCartArray().length === 0) {
+function focusField(field) {
+  if (!field) return;
+
+  field.focus({ preventScroll: true });
+  field.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function openWhatsAppCheckout(whatsappURL) {
+  try {
+    window.location.assign(whatsappURL);
+  } catch (error) {
+    window.location.href = whatsappURL;
+  }
+}
+
+function handleCheckout(event) {
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  const cartItems = getCartArray();
+
+  if (cartItems.length === 0) {
     alert('Your cart is empty.');
     return;
   }
 
   if (!cartName.value.trim()) {
     alert('Please enter your name.');
+    focusField(cartName);
     return;
   }
 
   if (!cartPhone.value.trim()) {
     alert('Please enter your phone number.');
+    focusField(cartPhone);
     return;
   }
 
   if (getOrderType() === 'Delivery' && !cartAddress.value.trim()) {
     alert('Please enter delivery address.');
+    focusField(cartAddress);
     return;
   }
 
-  window.open(buildWhatsAppMessage(), '_blank');
+  const whatsappURL = buildWhatsAppMessage();
+  openWhatsAppCheckout(whatsappURL);
 }
 
 /* =========================
@@ -1276,7 +1305,10 @@ cartBar.addEventListener('click', openCart);
 cartBackdrop.addEventListener('click', closeCart);
 closeCartBtn.addEventListener('click', closeCart);
 searchInput.addEventListener('input', handleSearch);
-checkoutBtn.addEventListener('click', handleCheckout);
+if (checkoutBtn) {
+  checkoutBtn.onclick = null;
+  checkoutBtn.addEventListener('click', handleCheckout);
+}
 
 document.querySelectorAll('input[name="orderType"]').forEach(radio => {
   radio.addEventListener('change', updateCartUI);
