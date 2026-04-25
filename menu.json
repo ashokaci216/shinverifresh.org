@@ -234,8 +234,8 @@
             {"id": "derista-mozzarella-cheese-diced-1-kg","brand": "Derista","name": "Derista Mozzarella Cheese Diced 1 kg","unit": "1 kg","available": true,"image": "images/products/derista-mozzarella-cheese-diced-1-kg.jpg","slabs": [{"minQty": 1,"price": 460.0},{"minQty": 6,"price": 446.2},{"minQty": 12,"price": 427.8}]},
             {"id": "derista-processed-cheese-slice-white-780-gm","brand": "Derista","name": "Derista Processed Cheese Slice White 780 gm","unit": "780 gm","available": true,"image": "images/products/derista-processed-cheese-slice-white-780-gm.jpg","slabs": [{"minQty": 1,"price": 380.0},{"minQty": 6,"price": 368.6},{"minQty": 12,"price": 353.4}]},
             {"id": "derista-sandwich-slice-52","brand": "Derista","name": "Derista Sandwich Slice 52","unit": "","available": true,"image": "images/products/derista-sandwich-slice-52.jpg","slabs": [{"minQty": 1,"price": 350.0},{"minQty": 6,"price": 339.5},{"minQty": 12,"price": 325.5}]},
-            {"id": "madhusudan-fresh-cream-1-ltr","brand": "Madhusudhan","name": "Madhusudan Fresh Cream 1 ltr","unit": "1 ltr","available": true,"image": "images/products/madhusudan-fresh-cream-1-ltr.jpg","slabs": [{"minQty": 1,"price": 210.0},{"minQty": 6,"price": 203.7},{"minQty": 12,"price": 195.3}]},
-            {"id": "madhusudan-fresh-cream-200-ml","brand": "Madhusudhan","name": "Madhusudan Fresh Cream 200 ml","unit": "200 ml","available": true,"image": "images/products/madhusudan-fresh-cream-200-ml.jpg","slabs": [{"minQty": 1,"price": 57.0},{"minQty": 6,"price": 55.29},{"minQty": 12,"price": 53.01}]}
+            {"id": "madhusudan-fresh-cream-1-ltr","brand": "Madhusudhan","name": "Madhusudan Fresh Cream 1 ltr","unit": "1 ltr","available": true,"image": "images/products/madhusudan-fresh-cream-1-ltr.jpg","slabs": [{"minQty": 1,"price": 210.0},{"minQty": 6,"price": 208.7},{"minQty": 12,"price": 206.3}]},
+            {"id": "madhusudan-fresh-cream-200-ml","brand": "Madhusudhan","name": "Madhusudan Fresh Cream 200 ml","unit": "200 ml","available": true,"image": "images/products/madhusudan-fresh-cream-200-ml.jpg","slabs": [{"minQty": 1,"price": 57.0},{"minQty": 6,"price": 56.0},{"minQty": 12,"price": 55.0}]}
           ]
         },
     {
@@ -302,7 +302,7 @@
             {"id": "euro-gold-sliced-green-olives-450-gm","brand": "Euro Gold","name": "Euro Gold Sliced Green Olives 450 gm","unit": "450 gm","available": true,"image": "images/products/euro-gold-sliced-green-olives-450-gm.jpg","slabs": [{"minQty": 1,"price": 170.0},{"minQty": 6,"price": 161.5},{"minQty": 12,"price": 153.0}]},
             {"id": "jivo-extrs-virgin-olive-oil-1-ltr","brand": "Jivo","name": "Jivo Extrs Virgin Olive Oil 1 ltr","unit": "1 ltr","available": true,"image": "images/products/jivo-extrs-virgin-olive-oil-1-ltr.jpg","slabs": [{"minQty": 1,"price": 850.0},{"minQty": 6,"price": 807.5},{"minQty": 12,"price": 765.0}]},
             {"id": "jivo-pomace-olive-oil-1-ltr","brand": "Jivo","name": "Jivo Pomace Olive Oil 1 ltr","unit": "1 ltr","available": true,"image": "images/products/jivo-pomace-olive-oil-1-ltr.jpg","slabs": [{"minQty": 1,"price": 430.0},{"minQty": 6,"price": 408.5},{"minQty": 12,"price": 387.0}]},
-            {"id": "jivo-pomace-olive-oil-5-ltr","brand": "Jivo","name": "Jivo Pomace Olive Oil 5 ltr","unit": "5 ltr","available": true,"image": "images/products/jivo-pomace-olive-oil-5-ltr.jpg","slabs": [{"minQty": 1,"price": 2050.0},{"minQty": 6,"price": 1947.5},{"minQty": 12,"price": 1845.0}]}
+            {"id": "jivo-pomace-olive-oil-5-ltr","brand": "Jivo","name": "Jivo Pomace Olive Oil 5 ltr","unit": "5 ltr","available": true,"image": "images/products/jivo-pomace-olive-oil-5-ltr.jpg","slabs": [{"minQty": 1,"price": 2050.0},{"minQty": 6,"price": 1947.5}]}
           ]
         },
     {
