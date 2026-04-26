@@ -364,7 +364,11 @@ HERO
 .hero-btn {
   min-height: 50px;
   padding: 0 20px;
-  font-size: 15px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  text-align: center;
   background: #FFFFFF;
   color: var(--text);
   border: 1px solid #E6D8C3;
@@ -374,6 +378,30 @@ HERO
 .hero-btn:hover {
   background: #FFF6DF;
   border-color: #E6D8C3;
+}
+
+.hero-actions .hero-btn:first-child {
+  background: rgba(255, 253, 248, 0.96);
+  color: #1F1A14;
+  border: 1px solid #E6D8C3;
+  box-shadow: 0 8px 18px rgba(40, 30, 20, 0.10);
+}
+
+.hero-actions .hero-btn:first-child:hover {
+  background: #FFF6DF;
+  border-color: #E0CBAE;
+}
+
+.hero-actions #hero-whatsapp-btn {
+  background: linear-gradient(135deg, #1F1A14 0%, #2E7D32 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(46, 125, 50, 0.55);
+  box-shadow: 0 12px 24px rgba(31, 26, 20, 0.18);
+}
+
+.hero-actions #hero-whatsapp-btn:hover {
+  background: linear-gradient(135deg, #182015 0%, #256b29 100%);
+  border-color: rgba(46, 125, 50, 0.72);
 }
 
 .hero-points {
@@ -2029,17 +2057,24 @@ RESPONSIVE
 
   .hero-section {
     min-height: 276px;
-    padding: 4px 0 10px;
+    padding: 4px 0 74px;
   }
 
   .hero-slider {
     min-height: 276px;
+    overflow: visible;
+  }
+
+  .hero-slide {
+    overflow: hidden;
+    border-radius: 32px;
   }
 
   .hero-card {
-    left: 20px;
-    right: 20px;
-    bottom: 18px;
+    left: 0;
+    right: 0;
+    top: calc(100% + 10px);
+    bottom: auto;
     max-width: none;
   }
 
@@ -2053,11 +2088,23 @@ RESPONSIVE
   }
 
   .hero-actions .hero-btn {
-    min-height: 42px;
+    min-height: 40px;
     padding: 0 14px;
     border-radius: 12px;
-    font-size: 13px;
+    font-size: 14px;
     flex: 1;
+  }
+
+  .hero-actions .hero-btn:first-child {
+    background: rgba(255, 253, 248, 0.98);
+    border-color: rgba(230, 216, 195, 0.92);
+    box-shadow: 0 5px 12px rgba(40, 30, 20, 0.07);
+  }
+
+  .hero-actions #hero-whatsapp-btn {
+    background: linear-gradient(135deg, #1f5e24 0%, #2E7D32 100%);
+    border-color: rgba(46, 125, 50, 0.38);
+    box-shadow: 0 6px 14px rgba(31, 94, 36, 0.16);
   }
 
   .hero-card h1:not(.sr-only) {
