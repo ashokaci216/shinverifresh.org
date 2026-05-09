@@ -57,6 +57,34 @@
   ],
   "categories": [
     {
+          "id": "buy-one-get-one",
+          "name": "Buy 1 Get 1",
+          "items": [
+            {"id": "core-de-soya-chaap-tandoori-250-gm-bogo","brand": "Core De","name": "Core De Soya Chaap Tandoori 250 gm - Buy 1 Get 1","unit": "250 gm","available": true,"image": "images/products/core-de-soya-chaap-tandoori-250-gm.jpg","slabs": [{"minQty": 1,"price": 250.0}]}
+          ]
+        },
+    {
+          "id": "forty-to-seventy-percent-off",
+          "name": "40% to 70% Off on MRP",
+          "items": [
+            {"id": "san-vito-penne-rigate-500-gm-offer","brand": "San Vito","name": "San Vito Penne Rigate 500 gm","unit": "500 gm","available": true,"image": "images/products/san-vito-penne-rigate-500-gm.jpg","mrp": 180,"offerText": "40% to 70% Off on MRP","slabs": [{"minQty": 1,"price": 70.0}]}
+          ]
+        },
+    {
+          "id": "japanese-section",
+          "name": "Japanese Section",
+          "items": [
+            {"id": "kikkoman-soya-sauce-1-ltr","brand": "Kikkoman","name": "Kikkoman Soya Sauce 1 ltr","unit": "1 ltr","available": true,"image": "images/products/kikkoman-soya-sauce-1-ltr.jpg","slabs": [{"minQty": 1,"price": 410.0},{"minQty": 6,"price": 390.0},{"minQty": 12,"price": 360.0}]}
+          ]
+        },
+    {
+          "id": "quick-order",
+          "name": "Quick Order",
+          "items": [
+            {"id": "nutrich-chicken-burger-patty-1-kg","brand": "Nutrich","name": "Nutrich Chicken Burger Patty 1 kg","unit": "1 kg","available": true,"image": "images/products/nutrich-chicken-burger-patty-1-kg.jpg","slabs": [{"minQty": 1,"price": 320.0},{"minQty": 6,"price": 304.0},{"minQty": 12,"price": 288.0}]}
+          ]
+        },
+    {
           "name": "Bakery & Breads",
           "image": "images/categories/bakery-and-breads.jpg",
           "items": [

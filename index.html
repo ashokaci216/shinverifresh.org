@@ -66,20 +66,37 @@
   </section>
 
   <!-- =========================
-  OFFER SECTION
+  QUICK ORDER PICKS
   ========================= -->
-  <section class="offers-section" id="offers-section">
+  <section class="quick-picks-section" id="quick-picks-section">
     <div class="container">
-      <div class="offers-wrap">
-        <div class="section-head offers-head">
-          <p class="eyebrow">Limited Time Deals</p>
-          <h2>Special Offers</h2>
+      <div class="quick-picks-wrap">
+        <div class="section-head quick-picks-head">
+          <p class="eyebrow">FAST ORDER SHORTCUTS</p>
+          <h2>Quick Order Picks</h2>
         </div>
 
-        <div id="offer-list" class="offer-grid"></div>
+        <div id="quick-picks-list" class="quick-picks-grid" aria-label="Quick order category shortcuts"></div>
       </div>
     </div>
   </section>
+
+  <main id="shortcut-products-section" class="shortcut-products-section hidden">
+    <div class="container">
+      <div class="category-items-head shortcut-products-head">
+        <button id="shortcut-back-btn" class="category-back-btn" type="button" aria-label="Go back to quick order picks">
+          <span aria-hidden="true">&#8249;</span>
+        </button>
+
+        <div class="category-items-copy">
+          <p class="eyebrow">FAST ORDER SHORTCUTS</p>
+          <h2 id="shortcut-view-title">Quick Order Picks</h2>
+        </div>
+      </div>
+
+      <div id="shortcut-product-list" class="product-grid"></div>
+    </div>
+  </main>
 
   <!-- =========================
   SEARCH & FILTERS

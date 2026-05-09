@@ -23,6 +23,42 @@ const DEFAULT_OFFER_IMAGE_MAP = {
   'malas-green-apple-crush': 'images/offers/malas-green-apple-crush.jpg',
   'wg-premium-veg-mayo': 'images/offers/wg-premium-veg-mayo.jpg'
 };
+const QUICK_ORDER_PICK_CATEGORIES = [
+  {
+    id: 'buy-one-get-one',
+    title: 'Buy 1 Get 1',
+    subtitle: 'Double the value, same great quality.',
+    cta: 'View Items',
+    icon: 'B1G1',
+    tone: 'green'
+  },
+  {
+    id: 'forty-to-seventy-percent-off',
+    title: '40% to 70% Off on MRP',
+    subtitle: 'Hot deals on selected products.',
+    cta: 'View Items',
+    icon: '%',
+    tone: 'orange'
+  },
+  {
+    id: 'japanese-section',
+    title: 'Japanese Section',
+    subtitle: 'Sushi & Japanese essentials.',
+    cta: 'View Items',
+    icon: 'JP',
+    tone: 'coral'
+  },
+  {
+    id: 'quick-order',
+    title: 'Quick Order',
+    subtitle: 'Cafe regular fast-moving items.',
+    cta: 'View Items',
+    icon: 'Q',
+    tone: 'blue'
+  }
+];
+const OFFER_CATEGORY_IDS = new Set(['buy-one-get-one', 'forty-to-seventy-percent-off']);
+const HIDDEN_FROM_CATEGORY_GRID_IDS = new Set(QUICK_ORDER_PICK_CATEGORIES.map(category => category.id));
 
 /* =========================
 STATE
@@ -44,9 +80,14 @@ const headerWhatsappBtn = document.getElementById('header-whatsapp-btn');
 const heroWhatsappBtn = document.getElementById('hero-whatsapp-btn');
 const footerPhone = document.getElementById('footer-phone');
 
-const offersSection = document.getElementById('offers-section');
-const offerList = document.getElementById('offer-list');
+const quickPicksSection = document.getElementById('quick-picks-section');
+const quickPicksList = document.getElementById('quick-picks-list');
+const shortcutProductsSection = document.getElementById('shortcut-products-section');
+const shortcutBackBtn = document.getElementById('shortcut-back-btn');
+const shortcutViewTitle = document.getElementById('shortcut-view-title');
+const shortcutProductList = document.getElementById('shortcut-product-list');
 const searchInput = document.getElementById('searchInput');
+const searchSection = document.querySelector('.search-section');
 const categoryShowcaseSection = document.getElementById('products-section');
 const categoryGrid = document.getElementById('category-grid');
 const filterSection = document.querySelector('.filter-section');
@@ -439,6 +480,108 @@ function getProductCardHTML(product, qty) {
   `;
 }
 
+function getOfferCategoryProductCardHTML(product, qty) {
+  const productUnit = product.unit || getProductUnit(product) || '';
+  const productBrand = product.brand || '';
+  const basePrice = getProductPrice(product);
+  const mrp = typeof product.mrp === 'number' ? product.mrp : null;
+  const isBogo = product.categoryId === 'buy-one-get-one';
+  const offerLabel = product.offerText || (isBogo ? 'Buy 1 Get 1' : 'Offer');
+  const displayName = isBogo ? product.name.replace(/\s+-\s+Buy 1 Get 1$/i, '') : product.name;
+  const displayMrp = mrp || (isBogo ? basePrice : null);
+  const saving = mrp && basePrice ? Math.max(mrp - basePrice, 0) : isBogo ? basePrice : 0;
+  const savingsTitle = isBogo ? 'Buy 1 Get 1 Offer' : offerLabel;
+  const savingsCopy = isBogo
+    ? `Add 1 to cart and pay ${formatCardPrice(basePrice)}. You will receive 2 packets.`
+    : 'Great savings on your favourite products.';
+  const imageSrc = typeof product?.image === 'string' ? product.image.trim() : '';
+  const fallbackLabel = getCategoryPlaceholderLabel(product?.name);
+
+  return `
+    <div class="offer-product-main">
+      <div class="offer-product-media${imageSrc ? ' has-image' : ' is-fallback'}" aria-hidden="${imageSrc ? 'false' : 'true'}">
+        ${
+          imageSrc
+            ? `<img
+                class="offer-product-image"
+                src="${imageSrc}"
+                alt="${product.name}"
+                loading="lazy"
+                tabindex="0"
+                role="button"
+                data-product-image-modal
+                data-product-id="${product.id}"
+                data-product-mode="regular"
+                onerror="this.parentElement.classList.add('is-fallback'); this.remove();"
+              />`
+            : ''
+        }
+        <span class="offer-product-placeholder">${fallbackLabel}</span>
+      </div>
+
+      <div class="offer-product-body">
+        <div class="offer-product-topline">
+          <span class="offer-product-brand">${productBrand}</span>
+        </div>
+
+        <h3 class="offer-product-name">${displayName}</h3>
+        ${productUnit ? `<p class="offer-product-unit">${productUnit}</p>` : ''}
+
+        <div class="offer-product-price-row">
+          ${
+            displayMrp
+              ? `<div class="offer-product-mrp${mrp ? ' is-struck' : ''}">
+                  <span>MRP</span>
+                  <strong>${formatCardPrice(displayMrp)}<small>/pkt</small></strong>
+                </div>`
+              : ''
+          }
+          <div class="offer-product-price-panel" data-product-price="${product.id}">
+            <span class="offer-product-badge">${offerLabel}</span>
+            <span data-price-label>Offer Price</span>
+            <strong data-price-value>${formatCardPrice(basePrice)}/pkt</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="offer-product-actions">
+        <div data-product-controls="${product.id}">
+          ${
+            qty > 0
+              ? getQtyControlHTML(product.id, qty)
+              : product.available === false
+                ? '<button class="add-btn" type="button" disabled>Unavailable</button>'
+                : `<button class="add-btn" onclick="addToCart('${product.id}', 'regular')">Add</button>`
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="offer-product-savings">
+      <div class="offer-product-savings-copy">
+        <span class="offer-product-savings-icon" aria-hidden="true">${isBogo ? '+' : '%'}</span>
+        <div>
+          <strong>${savingsTitle}</strong>
+          <span>${savingsCopy}</span>
+        </div>
+      </div>
+      ${
+        saving
+          ? `<div class="offer-product-save-amount">
+              <span>You Save</span>
+              <strong>${formatCardPrice(saving)}</strong>
+            </div>`
+          : ''
+      }
+    </div>
+
+    <div class="offer-product-validity">
+      <span aria-hidden="true"></span>
+      <strong>Offer valid till stock lasts</strong>
+    </div>
+  `;
+}
+
 function updateSingleProductPrice(productId) {
   const product = findProductById(productId);
   if (!product) return;
@@ -448,11 +591,12 @@ function updateSingleProductPrice(productId) {
   const priceNodes = document.querySelectorAll(`[data-product-price="${productId}"]`);
 
   priceNodes.forEach(priceNode => {
-    const label = priceNode.querySelector('span');
-    const value = priceNode.querySelector('strong');
+    const label = priceNode.querySelector('[data-price-label]') || priceNode.querySelector('span');
+    const value = priceNode.querySelector('[data-price-value]') || priceNode.querySelector('strong');
+    const isOfferCategoryCard = Boolean(priceNode.closest('.offer-product-card'));
 
-    if (label) label.textContent = 'Current rate';
-    if (value) value.textContent = `${formatCardPrice(activePrice)}/item`;
+    if (label) label.textContent = isOfferCategoryCard ? 'Offer Price' : 'Current rate';
+    if (value) value.textContent = `${formatCardPrice(activePrice)}${isOfferCategoryCard ? '/pkt' : '/item'}`;
   });
 }
 
@@ -468,10 +612,26 @@ function getCategoryById(categoryId) {
 function getCategoryUrl(categoryId = '') {
   const url = new URL(window.location.href);
 
+  url.searchParams.delete('shortcut');
+
   if (categoryId) {
     url.searchParams.set('category', categoryId);
   } else {
     url.searchParams.delete('category');
+  }
+
+  return `${url.pathname}${url.search}${url.hash}`;
+}
+
+function getShortcutUrl(categoryId = '') {
+  const url = new URL(window.location.href);
+
+  url.searchParams.delete('category');
+
+  if (categoryId) {
+    url.searchParams.set('shortcut', categoryId);
+  } else {
+    url.searchParams.delete('shortcut');
   }
 
   return `${url.pathname}${url.search}${url.hash}`;
@@ -568,6 +728,10 @@ function clearActiveCategorySelection() {
   document.querySelectorAll('.category-card').forEach(categoryCard => {
     categoryCard.classList.remove('active');
   });
+
+  document.querySelectorAll('.quick-pick-card').forEach(pickCard => {
+    pickCard.classList.remove('active');
+  });
 }
 
 function showCategoryHome({ updateHistory = true } = {}) {
@@ -581,6 +745,10 @@ function showCategoryHome({ updateHistory = true } = {}) {
     categoryShowcaseSection.classList.remove('hidden');
   }
 
+  if (searchSection) {
+    searchSection.classList.remove('hidden');
+  }
+
   if (filterSection) {
     filterSection.classList.add('hidden');
   }
@@ -589,8 +757,16 @@ function showCategoryHome({ updateHistory = true } = {}) {
     categoryItemsSection.classList.add('hidden');
   }
 
+  if (shortcutProductsSection) {
+    shortcutProductsSection.classList.add('hidden');
+  }
+
   if (productList) {
     productList.innerHTML = '';
+  }
+
+  if (shortcutProductList) {
+    shortcutProductList.innerHTML = '';
   }
 
   if (updateHistory) {
@@ -615,12 +791,20 @@ function showCategoryItemsView(categoryId, { updateHistory = true } = {}) {
     categoryShowcaseSection.classList.add('hidden');
   }
 
+  if (searchSection) {
+    searchSection.classList.remove('hidden');
+  }
+
   if (filterSection) {
     filterSection.classList.add('hidden');
   }
 
   if (categoryItemsSection) {
     categoryItemsSection.classList.remove('hidden');
+  }
+
+  if (shortcutProductsSection) {
+    shortcutProductsSection.classList.add('hidden');
   }
 
   if (categoryViewTitle) {
@@ -638,11 +822,119 @@ function showCategoryItemsView(categoryId, { updateHistory = true } = {}) {
   }
 }
 
+function renderShortcutProducts(category) {
+  if (!shortcutProductList) return;
+
+  shortcutProductList.innerHTML = '';
+
+  if (!category?.items?.length) {
+    shortcutProductList.innerHTML = '<div class="no-results">No products found.</div>';
+    return;
+  }
+
+  const grid = document.createElement('div');
+  grid.className = 'product-grid category-products-grid shortcut-products-grid';
+
+  category.items.forEach(product => {
+    const card = document.createElement('article');
+    const useOfferCard = OFFER_CATEGORY_IDS.has(category.id);
+    card.className = useOfferCard ? 'offer-product-card' : 'product-card';
+
+    const qty = cart[product.id]?.qty || 0;
+    card.innerHTML = useOfferCard
+      ? getOfferCategoryProductCardHTML(product, qty)
+      : getProductCardHTML(product, qty);
+
+    grid.appendChild(card);
+  });
+
+  shortcutProductList.appendChild(grid);
+}
+
+function openQuickPickCategory(categoryId, { updateHistory = true } = {}) {
+  const category = getCategoryById(categoryId);
+  if (!category) {
+    showCategoryHome({ updateHistory });
+    return;
+  }
+
+  currentView = 'quickPickView';
+  activeCategoryId = '';
+  currentFilter = 'all';
+
+  clearActiveCategorySelection();
+  setActiveFilterButton(category.id);
+
+  if (searchSection) {
+    searchSection.classList.add('hidden');
+  }
+
+  if (categoryShowcaseSection) {
+    categoryShowcaseSection.classList.add('hidden');
+  }
+
+  if (filterSection) {
+    filterSection.classList.add('hidden');
+  }
+
+  if (categoryItemsSection) {
+    categoryItemsSection.classList.add('hidden');
+  }
+
+  if (productList) {
+    productList.innerHTML = '';
+  }
+
+  if (shortcutProductsSection) {
+    shortcutProductsSection.classList.remove('hidden');
+  }
+
+  if (shortcutViewTitle) {
+    shortcutViewTitle.textContent = category.name;
+  }
+
+  renderShortcutProducts(category);
+  shortcutProductsSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  if (updateHistory) {
+    history.pushState(
+      { view: 'quickPickView', categoryId: category.id },
+      '',
+      getShortcutUrl(category.id)
+    );
+  }
+}
+
+function closeQuickPickView({ updateHistory = true } = {}) {
+  showCategoryHome({ updateHistory: false });
+
+  if (updateHistory) {
+    history.replaceState({ view: 'categoryGridView' }, '', getCategoryUrl());
+  }
+
+  requestAnimationFrame(() => {
+    quickPicksSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
+
 function syncViewWithLocation({ bootstrap = false } = {}) {
   const categoryIdFromUrl = new URLSearchParams(window.location.search).get('category');
+  const shortcutIdFromUrl = new URLSearchParams(window.location.search).get('shortcut');
   const category = getCategoryById(categoryIdFromUrl);
+  const shortcutCategory = getCategoryById(shortcutIdFromUrl);
 
   if (bootstrap) {
+    if (shortcutCategory && HIDDEN_FROM_CATEGORY_GRID_IDS.has(shortcutCategory.id)) {
+      history.replaceState({ view: 'categoryGridView' }, '', getCategoryUrl());
+      history.pushState(
+        { view: 'quickPickView', categoryId: shortcutCategory.id },
+        '',
+        getShortcutUrl(shortcutCategory.id)
+      );
+      openQuickPickCategory(shortcutCategory.id, { updateHistory: false });
+      return;
+    }
+
     if (category) {
       history.replaceState({ view: 'categoryGridView' }, '', getCategoryUrl());
       history.pushState(
@@ -656,6 +948,11 @@ function syncViewWithLocation({ bootstrap = false } = {}) {
 
     history.replaceState({ view: 'categoryGridView' }, '', getCategoryUrl());
     showCategoryHome({ updateHistory: false });
+    return;
+  }
+
+  if (shortcutCategory && HIDDEN_FROM_CATEGORY_GRID_IDS.has(shortcutCategory.id)) {
+    openQuickPickCategory(shortcutCategory.id, { updateHistory: false });
     return;
   }
 
@@ -773,7 +1070,7 @@ async function loadMenuData() {
     filteredProducts = [...products];
 
     updateStoreInfo();
-    renderOfferProducts();
+    renderQuickOrderPicks();
     renderCategoryFilters();
     syncViewWithLocation({ bootstrap: true });
     updateCartUI();
@@ -825,7 +1122,7 @@ function renderCategoryFilters() {
       categoryFilters.appendChild(button);
     }
 
-    if (categoryGrid) {
+    if (categoryGrid && !HIDDEN_FROM_CATEGORY_GRID_IDS.has(category.id)) {
       const card = document.createElement('button');
       card.type = 'button';
       card.className = 'category-card';
@@ -850,6 +1147,10 @@ function setActiveFilterButton(categoryId) {
     categoryCard.classList.toggle('active', categoryCard.dataset.filter === categoryId);
   });
 
+  document.querySelectorAll('.quick-pick-card').forEach(pickCard => {
+    pickCard.classList.toggle('active', pickCard.dataset.filter === categoryId);
+  });
+
   const activeFilterButton = document.querySelector(`.filter-btn[data-filter="${categoryId}"]`);
   if (activeFilterButton && filterSection && !filterSection.classList.contains('hidden')) {
     activeFilterButton.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
@@ -861,98 +1162,40 @@ function handleCategoryFilter(categoryId) {
 }
 
 /* =========================
-OFFER SECTION
+QUICK ORDER PICKS
 ========================= */
-function renderOfferProducts() {
-  if (!offersSection || !offerList) return;
+function renderQuickOrderPicks() {
+  if (!quickPicksSection || !quickPicksList) return;
 
-  if (!offerProducts.length) {
-    offersSection.classList.add('hidden');
-    offerList.innerHTML = '';
+  const availablePicks = QUICK_ORDER_PICK_CATEGORIES.filter(pick => getCategoryById(pick.id));
+
+  if (!availablePicks.length) {
+    quickPicksSection.classList.add('hidden');
+    quickPicksList.innerHTML = '';
     return;
   }
 
-  offersSection.classList.remove('hidden');
-  offerList.innerHTML = '';
+  quickPicksSection.classList.remove('hidden');
+  quickPicksList.innerHTML = '';
 
-  offerProducts.forEach(product => {
-    const card = document.createElement('article');
-    card.className = 'offer-card';
-
-    const qty = cart[product.id]?.qty || 0;
-    const offerPrice = getOfferPrice(product);
-    const oldPrice = typeof product.actualPrice === 'number' ? product.actualPrice : null;
-    const saving = typeof product.saving === 'number' ? product.saving : null;
-    const packText = formatOfferPackText(product.packText);
-    const offerValidityText = formatOfferValidityText(product.offerText, product.qtyLabel);
-    const offerImageSrc = product.offerImage || product.image || '';
-    const imageBlock = offerImageSrc
-      ? `
-        <div class="offer-image-wrap">
-          <img
-            class="offer-image"
-            src="${offerImageSrc}"
-            alt="${product.name}"
-            loading="lazy"
-            tabindex="0"
-            role="button"
-            data-product-image-modal
-            data-product-id="${product.id}"
-            data-product-mode="offer"
-            onerror="this.closest('.offer-image-wrap').style.display='none';"
-          />
-        </div>
-      `
-      : '';
-
+  availablePicks.forEach(pick => {
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = `quick-pick-card quick-pick-card-${pick.tone}`;
+    card.dataset.filter = pick.id;
+    card.setAttribute('aria-label', `View ${pick.title}`);
     card.innerHTML = `
-      ${imageBlock}
-
-      <div class="offer-card-top">
-        <span class="offer-badge">${product.offerText || 'Offer'}</span>
-        <span class="offer-category">${product.brand || ''}</span>
-      </div>
-
-      <h3 class="offer-name">${product.name}</h3>
-      <p class="offer-desc">${packText}</p>
-
-      <div class="offer-details">
-        <div class="offer-detail-row">
-          <span>Offer valid on</span>
-          <strong>${offerValidityText}</strong>
-        </div>
-        ${
-          saving
-            ? `<div class="offer-detail-row">
-                <span>You Save</span>
-                <strong>${formatPrice(saving)}</strong>
-              </div>`
-            : ''
-        }
-      </div>
-
-      <div class="offer-price-row">
-        <div class="offer-price-wrap">
-          <strong class="offer-price">${formatPrice(offerPrice)}</strong>
-          ${oldPrice ? `<span class="offer-old-price">${formatPrice(oldPrice)}</span>` : ''}
-        </div>
-        <span class="offer-meta">Offer Price</span>
-      </div>
-
-      <div class="offer-footer">
-        <div data-product-controls="${product.id}">
-          ${
-            qty > 0
-              ? getQtyControlHTML(product.id, qty)
-              : product.available === false
-                ? '<button class="add-btn" type="button" disabled>Unavailable</button>'
-                : `<button class="add-btn" onclick="addToCart('${product.id}', 'offer')">Add to Cart</button>`
-          }
-        </div>
-      </div>
+      <span class="quick-pick-media" aria-hidden="true">
+        <span class="quick-pick-icon">${pick.icon}</span>
+      </span>
+      <span class="quick-pick-copy">
+        <strong>${pick.title}</strong>
+        <span>${pick.subtitle}</span>
+      </span>
+      <span class="quick-pick-cta">${pick.cta}<span aria-hidden="true">&#8250;</span></span>
     `;
-
-    offerList.appendChild(card);
+    card.addEventListener('click', () => openQuickPickCategory(pick.id));
+    quickPicksList.appendChild(card);
   });
 }
 
@@ -999,10 +1242,13 @@ function renderProducts(productArray) {
 
     visibleItems.forEach(product => {
       const card = document.createElement('article');
-      card.className = 'product-card';
+      const useOfferCard = OFFER_CATEGORY_IDS.has(activeCategory.id);
+      card.className = useOfferCard ? 'offer-product-card' : 'product-card';
 
       const qty = cart[product.id]?.qty || 0;
-      card.innerHTML = getProductCardHTML(product, qty);
+      card.innerHTML = useOfferCard
+        ? getOfferCategoryProductCardHTML(product, qty)
+        : getProductCardHTML(product, qty);
 
       grid.appendChild(card);
     });
@@ -1032,10 +1278,13 @@ function renderProducts(productArray) {
 
     visibleItems.forEach(product => {
       const card = document.createElement('article');
-      card.className = 'product-card';
+      const useOfferCard = OFFER_CATEGORY_IDS.has(product.categoryId);
+      card.className = useOfferCard ? 'offer-product-card' : 'product-card';
 
       const qty = cart[product.id]?.qty || 0;
-      card.innerHTML = getProductCardHTML(product, qty);
+      card.innerHTML = useOfferCard
+        ? getOfferCategoryProductCardHTML(product, qty)
+        : getProductCardHTML(product, qty);
 
       grid.appendChild(card);
     });
@@ -1375,6 +1624,12 @@ if (categoryBackBtn) {
     }
 
     showCategoryHome();
+  });
+}
+
+if (shortcutBackBtn) {
+  shortcutBackBtn.addEventListener('click', () => {
+    closeQuickPickView();
   });
 }
 
