@@ -55,6 +55,22 @@ const QUICK_ORDER_PICK_CATEGORIES = [
     cta: 'View Items',
     icon: 'Q',
     tone: 'blue'
+  },
+  {
+    id: 'premium-cheese',
+    title: 'Premium Cheese',
+    subtitle: 'Imported & specialty cheese.',
+    cta: 'View Items',
+    icon: 'PC',
+    tone: 'green'
+  },
+  {
+    id: 'party-function-supplies',
+    title: 'Party & Function Supplies',
+    subtitle: 'Fries, snacks, syrups & sauces.',
+    cta: 'View Items',
+    icon: 'PF',
+    tone: 'blue'
   }
 ];
 const OFFER_CATEGORY_IDS = new Set(['buy-one-get-one', 'forty-to-seventy-percent-off']);
@@ -1164,6 +1180,31 @@ function handleCategoryFilter(categoryId) {
 /* =========================
 QUICK ORDER PICKS
 ========================= */
+function getQuickPickMediaHTML(pick, category) {
+  const imageSrc = getCategoryImageSrc(category);
+
+  if (!imageSrc) {
+    return `
+      <span class="quick-pick-media is-fallback" aria-hidden="true">
+        <span class="quick-pick-icon">${pick.icon}</span>
+      </span>
+    `;
+  }
+
+  return `
+    <span class="quick-pick-media has-image" aria-hidden="true">
+      <img
+        class="quick-pick-image"
+        src="${imageSrc}"
+        alt=""
+        loading="lazy"
+        onerror="this.parentElement.classList.add('is-fallback'); this.remove();"
+      />
+      <span class="quick-pick-icon">${pick.icon}</span>
+    </span>
+  `;
+}
+
 function renderQuickOrderPicks() {
   if (!quickPicksSection || !quickPicksList) return;
 
@@ -1179,15 +1220,14 @@ function renderQuickOrderPicks() {
   quickPicksList.innerHTML = '';
 
   availablePicks.forEach(pick => {
+    const category = getCategoryById(pick.id);
     const card = document.createElement('button');
     card.type = 'button';
     card.className = `quick-pick-card quick-pick-card-${pick.tone}`;
     card.dataset.filter = pick.id;
     card.setAttribute('aria-label', `View ${pick.title}`);
     card.innerHTML = `
-      <span class="quick-pick-media" aria-hidden="true">
-        <span class="quick-pick-icon">${pick.icon}</span>
-      </span>
+      ${getQuickPickMediaHTML(pick, category)}
       <span class="quick-pick-copy">
         <strong>${pick.title}</strong>
         <span>${pick.subtitle}</span>

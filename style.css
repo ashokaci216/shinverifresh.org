@@ -454,7 +454,7 @@ QUICK ORDER PICKS
 
 .quick-picks-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
 }
 
@@ -495,8 +495,24 @@ QUICK ORDER PICKS
   justify-content: center;
   width: 86px;
   height: 86px;
+  overflow: hidden;
   border-radius: 50%;
   background: #EAF5E7;
+}
+
+.quick-pick-media.has-image .quick-pick-icon {
+  display: none;
+}
+
+.quick-pick-media.is-fallback .quick-pick-icon {
+  display: inline-flex;
+}
+
+.quick-pick-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .quick-pick-icon {

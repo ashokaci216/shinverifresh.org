@@ -59,6 +59,7 @@
     {
           "id": "buy-one-get-one",
           "name": "Buy 1 Get 1",
+          "image": "images/categories/buy-one-get-one.jpg",
           "items": [
             {"id": "core-de-soya-chaap-tandoori-250-gm-bogo","brand": "Core De","name": "Core De Soya Chaap Tandoori 250 gm - Buy 1 Get 1","unit": "250 gm","available": true,"image": "images/products/core-de-soya-chaap-tandoori-250-gm.jpg","slabs": [{"minQty": 1,"price": 250.0}]}
           ]
@@ -66,6 +67,7 @@
     {
           "id": "forty-to-seventy-percent-off",
           "name": "40% to 70% Off on MRP",
+          "image": "images/categories/forty-to-seventy-percent-off.jpg",
           "items": [
             {"id": "san-vito-penne-rigate-500-gm-offer","brand": "San Vito","name": "San Vito Penne Rigate 500 gm","unit": "500 gm","available": true,"image": "images/products/san-vito-penne-rigate-500-gm.jpg","mrp": 180,"offerText": "40% to 70% Off on MRP","slabs": [{"minQty": 1,"price": 70.0}]}
           ]
@@ -73,6 +75,7 @@
     {
           "id": "japanese-section",
           "name": "Japanese Section",
+          "image": "images/categories/japanese-section.jpg",
           "items": [
             {"id": "kikkoman-soya-sauce-1-ltr","brand": "Kikkoman","name": "Kikkoman Soya Sauce 1 ltr","unit": "1 ltr","available": true,"image": "images/products/kikkoman-soya-sauce-1-ltr.jpg","slabs": [{"minQty": 1,"price": 410.0},{"minQty": 6,"price": 390.0},{"minQty": 12,"price": 360.0}]}
           ]
@@ -80,8 +83,48 @@
     {
           "id": "quick-order",
           "name": "Quick Order",
+          "image": "images/categories/quick-order.jpg",
           "items": [
             {"id": "nutrich-chicken-burger-patty-1-kg","brand": "Nutrich","name": "Nutrich Chicken Burger Patty 1 kg","unit": "1 kg","available": true,"image": "images/products/nutrich-chicken-burger-patty-1-kg.jpg","slabs": [{"minQty": 1,"price": 320.0},{"minQty": 6,"price": 304.0},{"minQty": 12,"price": 288.0}]}
+          ]
+        },
+        {
+          "id": "premium-cheese",
+          "name": "Premium Cheese",
+          "image": "images/categories/premium-cheese.jpg",
+          "items": [
+            {"id": "florella-burrata-cheese-250-gm","brand": "Florella","name": "Florella Burrata Cheese 250 gm","unit": "250 gm","available": true,"image": "images/products/florella-burrata-cheese-250-gm.jpg","slabs": [{"minQty": 1,"price": 375.0}]},
+            {"id": "florella-ricotta-cheese-500-gm","brand": "Florella","name": "Florella Ricotta Cheese 500 gm","unit": "500 gm","available": true,"image": "images/products/florella-ricotta-cheese-500-gm.jpg","slabs": [{"minQty": 1,"price": 415.0}]},
+            {"id": "imported-parmesan-cheese-1-kg","brand": "Imported","name": "Imported Parmesan Cheese 1 kg","unit": "1 kg","available": true,"image": "images/products/imported-parmesan-cheese-1-kg.jpg","slabs": [{"minQty": 1,"price": 1700.0}]},
+            {"id": "imported-parmesan-block-approx-4-6-kg","brand": "Imported","name": "Imported Parmesan Block Approx 4.6 kg","unit": "Approx 4.6 kg","available": true,"image": "images/products/imported-parmesan-block-approx-4-6-kg.jpg","slabs": [{"minQty": 1,"price": 7245.0}]},
+            {"id": "colliers-mild-coloured-cheddar-block-approx-2-5-kg","brand": "Collier's","name": "Collier's Mild Coloured Cheddar Block Approx 2.5 kg","unit": "Approx 2.5 kg","available": true,"image": "images/products/colliers-mild-coloured-cheddar-block-approx-2-5-kg.jpg","slabs": [{"minQty": 1,"price": 1550.0}]},
+            {"id": "arla-white-feta-cheese-500-gm","brand": "Arla","name": "Arla White Feta Cheese 500 gm","unit": "500 gm","available": true,"image": "images/products/arla-white-feta-cheese-500-gm.jpg","slabs": [{"minQty": 1,"price": 400.0}]}
+          ]
+        },
+        {
+          "id": "party-function-supplies",
+          "name": "Party & Function Supplies",
+          "image": "images/categories/party-function-supplies.jpg",
+          "items": [
+            {"id": "nutrich-boneless-fried-chicken-1-kg","brand": "Nutrich","name": "Nutrich Boneless Fried Chicken 1 kg","unit": "1 kg","available": true,"image": "images/products/nutrich-boneless-fried-chicken-1-kg.jpg","slabs": [{"minQty": 1,"price": 430.0},{"minQty": 6,"price": 408.5},{"minQty": 12,"price": 387.0}]},
+            {"id": "nutrich-chicken-cheese-ball-1-kg","brand": "Nutrich","name": "Nutrich Chicken Cheese Ball 1 kg","unit": "1 kg","available": true,"image": "images/products/nutrich-chicken-cheese-ball-1-kg.jpg","slabs": [{"minQty": 1,"price": 400.0},{"minQty": 6,"price": 380.0},{"minQty": 12,"price": 360.0}]},
+            {"id": "nutrich-chicken-garlic-finger-1-kg","brand": "Nutrich","name": "Nutrich Chicken Garlic Finger 1 kg","unit": "1 kg","available": true,"image": "images/products/nutrich-chicken-garlic-finger-1-kg.jpg","slabs": [{"minQty": 1,"price": 350.0},{"minQty": 6,"price": 332.5},{"minQty": 12,"price": 315.0}]},
+            {"id": "nutrich-chicken-masala-nuggets-1-kg","brand": "Nutrich","name": "Nutrich Chicken Masala Nuggets 1 kg","unit": "1 kg","available": true,"image": "images/products/nutrich-chicken-masala-nuggets-1-kg.jpg","slabs": [{"minQty": 1,"price": 365.0},{"minQty": 6,"price": 346.75},{"minQty": 12,"price": 328.5}]},
+            {"id": "nutrich-chicken-nuggets-1-kg","brand": "Nutrich","name": "Nutrich Chicken Nuggets 1 kg","unit": "1 kg","available": true,"image": "images/products/nutrich-chicken-nuggets-1-kg.jpg","slabs": [{"minQty": 1,"price": 350.0},{"minQty": 6,"price": 332.5},{"minQty": 12,"price": 315.0}]},
+            {"id": "nutrich-chicken-popcorn-1-kg","brand": "Nutrich","name": "Nutrich Chicken Popcorn 1 kg","unit": "1 kg","available": true,"image": "images/products/nutrich-chicken-popcorn-1-kg.jpg","slabs": [{"minQty": 1,"price": 350.0},{"minQty": 6,"price": 332.5},{"minQty": 12,"price": 315.0}]},
+            {"id": "nutrich-chicken-pops-1-kg","brand": "Nutrich","name": "Nutrich Chicken Pops 1 kg","unit": "1 kg","available": true,"image": "images/products/nutrich-chicken-pops-1-kg.jpg","slabs": [{"minQty": 1,"price": 440.0},{"minQty": 6,"price": 418.0},{"minQty": 12,"price": 396.0}]},
+            {"id": "nutrich-chicken-strips-1-kg","brand": "Nutrich","name": "Nutrich Chicken Strips 1 kg","unit": "1 kg","available": true,"image": "images/products/nutrich-chicken-strips-1-kg.jpg","slabs": [{"minQty": 1,"price": 430.0},{"minQty": 6,"price": 408.5},{"minQty": 12,"price": 387.0}]},
+            {"id": "nutrich-chicken-tandoori-burger-1-kg","brand": "Nutrich","name": "Nutrich Chicken Tandoori Burger 1 kg","unit": "1 kg","available": true,"image": "images/products/nutrich-chicken-tandoori-burger-1-kg.jpg","slabs": [{"minQty": 1,"price": 280.0},{"minQty": 6,"price": 266.0},{"minQty": 12,"price": 252.0}]},
+            {"id": "just-crave-french-fries-9-mm-2-5-kg","brand": "Just Crave","name": "Just Crave French Fries 9 mm 2.5 kg","unit": "2.5 kg","available": true,"image": "images/products/just-crave-french-fries-9-mm-2-5-kg.jpg","slabs": [{"minQty": 1,"price": 300.0},{"minQty": 6,"price": 285.0},{"minQty": 12,"price": 270.0}]},
+            {"id": "just-crave-veg-burger-patty-1-2-kg","brand": "Just Crave","name": "Just Crave Veg Burger Patty 1.2 kg","unit": "1.2 kg","available": true,"image": "images/products/just-crave-veg-burger-patty-1-2-kg.jpg","slabs": [{"minQty": 1,"price": 200.0},{"minQty": 6,"price": 190.0},{"minQty": 12,"price": 180.0}]},
+            {"id": "gc-mojito-lime-and-mint-1-ltr","brand": "Golden Crown (GC)","name": "GC Mojito Lime And Mint 1 ltr","unit": "1 ltr","available": true,"image": "images/products/gc-mojito-lime-and-mint-1-ltr.jpg","slabs": [{"minQty": 1,"price": 280.0},{"minQty": 6,"price": 266.0},{"minQty": 12,"price": 252.0}]},
+            {"id": "chefys-peri-peri-sprinkler-250-gm","brand": "Chefys","name": "Chefys Peri Peri Sprinkler 250 gm","unit": "250 gm","available": true,"image": "images/products/chefys-peri-peri-sprinkler-250-gm.jpg","slabs": [{"minQty": 1,"price": 150.0},{"minQty": 6,"price": 142.5},{"minQty": 12,"price": 135.0}]},
+            {"id": "gc-blue-curacao-1-ltr","brand": "Golden Crown (GC)","name": "GC Blue Curacao 1 ltr","unit": "1 ltr","available": true,"image": "images/products/gc-blue-curacao-1-ltr.jpg","slabs": [{"minQty": 1,"price": 280.0},{"minQty": 6,"price": 266.0},{"minQty": 12,"price": 252.0}]},
+            {"id": "wg-tomato-ketchup-sachet-8-gm","brand": "Wingreen","name": "WG Tomato Ketchup Sachet 8 gm","unit": "8 gm","available": true,"image": "images/products/wg-tomato-ketchup-sachet-8-gm.jpg","slabs": [{"minQty": 1,"price": 70.0},{"minQty": 6,"price": 66.5},{"minQty": 12,"price": 63.0}]},
+            {"id": "wg-burger-mayo-1-kg","brand": "Wingreen","name": "WG Burger Mayo 1 kg","unit": "1 kg","available": true,"image": "images/products/wg-burger-mayo-1-kg.jpg","slabs": [{"minQty": 1,"price": 160.0},{"minQty": 6,"price": 152.0},{"minQty": 12,"price": 144.0}]},
+            {"id": "wg-classic-veg-mayo-1-kg","brand": "Wingreen","name": "WG Classic Veg Mayo 1 kg","unit": "1 kg","available": true,"image": "images/products/wg-classic-veg-mayo-1-kg.jpg","slabs": [{"minQty": 1,"price": 90.0},{"minQty": 6,"price": 85.5},{"minQty": 12,"price": 81.0}]},
+            {"id": "wg-mint-mayo-1-kg","brand": "Wingreen","name": "WG Mint Mayo 1 kg","unit": "1 kg","available": true,"image": "images/products/wg-mint-mayo-1-kg.jpg","slabs": [{"minQty": 1,"price": 210.0},{"minQty": 6,"price": 199.5},{"minQty": 12,"price": 189.0}]},
+            {"id": "wg-chipotle-mayo-1-kg","brand": "Wingreen","name": "WG Chipotle Mayo 1 kg","unit": "1 kg","available": true,"image": "images/products/wg-chipotle-mayo-1-kg.jpg","slabs": [{"minQty": 1,"price": 200.0},{"minQty": 6,"price": 190.0},{"minQty": 12,"price": 180.0}]}
           ]
         },
     {
