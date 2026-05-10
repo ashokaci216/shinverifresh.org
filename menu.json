@@ -61,7 +61,8 @@
           "name": "Buy 1 Get 1",
           "image": "images/categories/buy-one-get-one.jpg",
           "items": [
-            {"id": "core-de-soya-chaap-tandoori-250-gm-bogo","brand": "Core De","name": "Core De Soya Chaap Tandoori 250 gm - Buy 1 Get 1","unit": "250 gm","available": true,"image": "images/products/core-de-soya-chaap-tandoori-250-gm.jpg","slabs": [{"minQty": 1,"price": 250.0}]}
+           {"id": "healthy-vibes-matter-soya-chaap-tandoori-250-gm-bogo","brand": "Healthy Vibes Matter","name": "Healthy Vibes Matter Soya Chaap Tandoori 250 gm - Buy 1 Get 1","unit": "250 gm","available": true,"image": "images/products/healthy-vibes-matter-soya-chaap-tandoori-250-gm.jpg","mrp": 250,"offerText": "Buy 1 Get 1","offerNote": "Pay ₹250, Get 2 pkt","slabs": [{"minQty": 1,"price": 250.0}]},
+          {"id": "healthy-vibes-matter-soya-chaap-hariyali-250-gm-bogo","brand": "Healthy Vibes Matter","name": "Healthy Vibes Matter Soya Chaap Hariyali 250 gm - Buy 1 Get 1","unit": "250 gm","available": true,"image": "images/products/healthy-vibes-matter-soya-chaap-hariyali-250-gm.jpg","mrp": 250,"offerText": "Buy 1 Get 1","offerNote": "Pay ₹250, Get 2 pkt","slabs": [{"minQty": 1,"price": 250.0}]}
           ]
         },
     {
