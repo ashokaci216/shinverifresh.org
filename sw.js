@@ -1,4 +1,4 @@
-const CACHE_NAME = 'shivneri-fresh-v20260508-images-menu-update';
+const CACHE_NAME = 'shivneri-fresh-v20260510-images-menu-update';
 const URLS_TO_CACHE = [
   '/',
   'index.html',
