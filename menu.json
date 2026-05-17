@@ -62,7 +62,8 @@
           "image": "images/categories/buy-one-get-one.jpg",
           "items": [
            {"id": "healthy-vibes-matter-soya-chaap-tandoori-250-gm-bogo","brand": "Healthy Vibes Matter","name": "Healthy Vibes Matter Soya Chaap Tandoori 250 gm - Buy 1 Get 1","unit": "250 gm","available": true,"image": "images/products/healthy-vibes-matter-soya-chaap-tandoori-250-gm.jpg","mrp": 250,"offerText": "Buy 1 Get 1","offerNote": "Pay ₹250, Get 2 pkt","slabs": [{"minQty": 1,"price": 250.0}]},
-          {"id": "healthy-vibes-matter-soya-chaap-hariyali-250-gm-bogo","brand": "Healthy Vibes Matter","name": "Healthy Vibes Matter Soya Chaap Hariyali 250 gm - Buy 1 Get 1","unit": "250 gm","available": true,"image": "images/products/healthy-vibes-matter-soya-chaap-hariyali-250-gm.jpg","mrp": 250,"offerText": "Buy 1 Get 1","offerNote": "Pay ₹250, Get 2 pkt","slabs": [{"minQty": 1,"price": 250.0}]}
+           {"id": "healthy-vibes-matter-soya-chaap-hariyali-250-gm-bogo","brand": "Healthy Vibes Matter","name": "Healthy Vibes Matter Soya Chaap Hariyali 250 gm - Buy 1 Get 1","unit": "250 gm","available": true,"image": "images/products/healthy-vibes-matter-soya-chaap-hariyali-250-gm.jpg","mrp": 250,"offerText": "Buy 1 Get 1","offerNote": "Pay ₹250, Get 2 pkt","slabs": [{"minQty": 1,"price": 250.0}]},
+           {"id": "basso-extra-virgin-olive-oil-1-ltr-bogo","brand": "Basso","name": "Basso Extra Virgin Olive Oil 1 ltr - Buy 1 Get 1","unit": "1 ltr","available": true,"image": "images/products/basso-extra-virgin-olive-oil-1-ltr.jpg","mrp": 2649,"offerText": "Buy 1 Get 1","offerNote": "Pay ₹2649, Get 2 bottles","slabs": [{"minQty": 1,"price": 2649.0}]}
           ]
         },
     {
