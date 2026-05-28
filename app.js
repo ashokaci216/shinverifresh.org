@@ -861,6 +861,11 @@ function showCategoryHome({ updateHistory = true } = {}) {
 
   clearActiveCategorySelection();
 
+  // Category View Visibility Fix
+  if (quickPicksSection) {
+    quickPicksSection.classList.remove('hidden');
+  }
+
   if (categoryShowcaseSection) {
     categoryShowcaseSection.classList.remove('hidden');
   }
@@ -915,6 +920,11 @@ function showCategoryItemsView(categoryId, { updateHistory = true } = {}) {
 
   if (categoryShowcaseSection) {
     categoryShowcaseSection.classList.add('hidden');
+  }
+
+  // Category View Visibility Fix
+  if (quickPicksSection) {
+    quickPicksSection.classList.add('hidden');
   }
 
   if (searchSection) {
