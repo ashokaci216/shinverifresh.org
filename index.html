@@ -66,6 +66,25 @@
   </section>
 
   <!-- =========================
+  SEARCH & FILTERS
+  ========================= -->
+  <section class="search-section">
+    <div class="container">
+      <div class="search-card">
+        <div class="search-copy">
+          <h2>Search Products</h2>
+          <p>Find sauces, frozen items, Japanese products, cheese &amp; more</p>
+        </div>
+
+        <div class="search-input-wrap">
+          <span class="search-icon" aria-hidden="true">&#128269;</span>
+          <input type="text" id="searchInput" placeholder="Search products, brands, sauces..." />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
   QUICK ORDER PICKS
   ========================= -->
   <section class="quick-picks-section" id="quick-picks-section">
@@ -97,17 +116,6 @@
       <div id="shortcut-product-list" class="product-grid"></div>
     </div>
   </main>
-
-  <!-- =========================
-  SEARCH & FILTERS
-  ========================= -->
-  <section class="search-section">
-    <div class="container">
-      <div class="search-card">
-        <input type="text" id="searchInput" placeholder="Search products..." />
-      </div>
-    </div>
-  </section>
 
   <section id="products-section" class="category-showcase-section">
     <div class="container">
@@ -173,6 +181,11 @@
   <!-- =========================
   CART V2
   ========================= -->
+
+  <!-- // Back To Category Top Button -->
+  <button id="back-to-category-top-btn" class="back-to-category-top-btn hidden" type="button" aria-label="Back to category top">
+    <span aria-hidden="true">&#8593;</span>
+  </button>
 
   <!-- Floating Cart Bar -->
   <button id="cart-bar" class="cart-bar hidden" type="button" aria-label="Open cart">

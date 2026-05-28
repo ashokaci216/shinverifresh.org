@@ -899,36 +899,89 @@ QUICK ORDER PICKS
 /* =========================
 SEARCH
 ========================= */
+/* Search Section Polish */
 .search-section {
-  padding: 16px 0 8px;
+  padding: 12px 0 8px;
 }
 
 .search-card {
-  background: var(--card);
-  border: 1.5px solid var(--line);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-  padding: 14px 18px;
-  transition: var(--transition);
+  display: grid;
+  gap: 10px;
+  background: linear-gradient(180deg, #FFFDF8 0%, #FFF8E8 100%);
+  border: 1px solid rgba(218, 196, 150, 0.62);
+  border-radius: 20px;
+  box-shadow: 0 10px 24px rgba(40, 30, 20, 0.07);
+  padding: 14px;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease;
 }
 
 .search-card:focus-within {
-  border-color: var(--accent);
-  box-shadow: var(--shadow);
+  border-color: rgba(46, 125, 50, 0.42);
+  box-shadow: 0 12px 28px rgba(40, 30, 20, 0.08), 0 0 0 3px rgba(46, 125, 50, 0.08);
+}
+
+.search-copy {
+  display: grid;
+  gap: 2px;
+}
+
+.search-copy h2 {
+  margin: 0;
+  color: var(--brand);
+  font-size: 18px;
+  font-weight: 760;
+  line-height: 1.2;
+}
+
+.search-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.search-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 54px;
+  border: 1px solid rgba(232, 223, 207, 0.95);
+  border-radius: 18px;
+  background: rgba(255, 253, 248, 0.92);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  transition: border-color 0.22s ease, background 0.22s ease;
+}
+
+.search-card:focus-within .search-input-wrap {
+  border-color: rgba(46, 125, 50, 0.46);
+  background: #FFFDF8;
+}
+
+.search-icon {
+  position: absolute;
+  left: 17px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(46, 125, 50, 0.82);
+  font-size: 16px;
+  line-height: 1;
+  pointer-events: none;
 }
 
 .search-card input {
   width: 100%;
-  min-height: 50px;
+  min-height: 52px;
   border: 0;
   background: transparent;
   outline: none;
-  font-size: 15px;
+  padding: 0 16px 0 46px;
+  font-size: 14.5px;
+  font-weight: 500;
   color: var(--text);
 }
 
 .search-card input::placeholder {
-  color: var(--muted);
+  color: rgba(92, 74, 58, 0.72);
 }
 
 /* =========================
@@ -2025,6 +2078,51 @@ SHIVNERI FRESH CART V2
   box-shadow: var(--shadow-sm);
 }
 
+/* // Back To Category Top Button */
+.back-to-category-top-btn {
+  position: fixed;
+  right: 18px;
+  bottom: calc(24px + env(safe-area-inset-bottom));
+  z-index: 998;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border: 0;
+  border-radius: 50%;
+  background: #1f5e24;
+  color: #ffffff;
+  box-shadow: 0 14px 28px rgba(31, 94, 36, 0.24), 0 4px 10px rgba(40, 30, 20, 0.12);
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.22s ease, visibility 0.22s ease, transform 0.22s ease, background 0.22s ease;
+}
+
+.back-to-category-top-btn.hidden {
+  display: inline-flex !important;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(10px);
+}
+
+.back-to-category-top-btn:hover {
+  background: #17491b;
+  transform: translateY(-2px);
+}
+
+.back-to-category-top-btn:active {
+  transform: translateY(0);
+}
+
+.back-to-category-top-btn span {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1;
+}
+
 /* =========================
 FOOTER
 ========================= */
@@ -2493,6 +2591,35 @@ RESPONSIVE
     font-size: 11.5px;
   }
 
+  /* Search Section Polish */
+  .search-section {
+    padding: 10px 0 7px;
+  }
+
+  .search-card {
+    gap: 8px;
+    border-radius: 18px;
+    padding: 12px;
+  }
+
+  .search-copy h2 {
+    font-size: 16px;
+  }
+
+  .search-copy p {
+    font-size: 12px;
+  }
+
+  .search-input-wrap {
+    min-height: 50px;
+    border-radius: 16px;
+  }
+
+  .search-card input {
+    min-height: 48px;
+    font-size: 14px;
+  }
+
   .offer-product-card {
     gap: 12px;
     padding: 12px;
@@ -2772,6 +2899,14 @@ RESPONSIVE
   .product-card .qty-box {
     width: auto;
     justify-content: center;
+  }
+
+  /* // Back To Category Top Button */
+  .back-to-category-top-btn {
+    right: 16px;
+    bottom: calc(88px + env(safe-area-inset-bottom));
+    width: 48px;
+    height: 48px;
   }
 
   .hero-points {
