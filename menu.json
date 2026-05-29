@@ -1,60 +1,4 @@
 {
-  "specialOffers": [
-    {
-    "id": "gc-mint-mojito-2-box-offer",
-    "name": "GC Mint Mojito 1 ltr",
-    "brand": "Golden Crown (GC)",
-    "packText": "1 box = 12 bottles",
-    "offerText": "Offer for 2 Boxes",
-    "qtyLabel": "2 Boxes (24 Bottles)",
-    "actualPrice": 6048,
-    "offerPrice": 5520,
-    "saving": 528,
-    "image": "images/offers/gc-mint-mojito-2-box.jpg",
-    "available": true
-  },
-  {
-    "id": "gc-schezwan-sauce-2-box-offer",
-    "name": "GC Schezwan Sauce 1 kg",
-    "brand": "Golden Crown (GC)",
-    "packText": "1 box = 12 bottles",
-    "offerText": "Offer for 2 Boxes",
-    "qtyLabel": "2 Boxes (24 Bottles)",
-    "actualPrice": 3120,
-    "offerPrice": 2901,
-    "saving": 219,
-    "image": "images/offers/gc-schezwan-sauce-2-box.jpg",
-    "available": true
-  },
-  {
-    "id": "frozen-prawns-31-40-12kg-offer",
-    "name": "Frozen Prawns 1kg 31/40",
-    "brand": "Shivneri Fresh",
-    "packText": "1 box = 12 kg",
-    "offerText": "Offer for 12 kg",
-    "qtyLabel": "12 kg",
-    "pieceRange": "70 to 75 pcs per kg",
-    "actualPrice": 6240,
-    "offerPrice": 5760,
-    "saving": 480,
-    "image": "images/offers/frozen-prawns-31-40-12kg.jpg",
-    "available": true
-  },
-  {
-    "id": "frozen-prawns-16-20-12kg-offer",
-    "name": "Frozen Prawns 1kg 16/20",
-    "brand": "Shivneri Fresh",
-    "packText": "1 box = 12 kg",
-    "offerText": "Offer for 12 kg",
-    "qtyLabel": "12 kg",
-    "pieceRange": "30 to 35 pcs per kg",
-    "actualPrice": 7800,
-    "offerPrice": 7200,
-    "saving": 600,
-    "image": "images/offers/frozen-prawns-16-20-12kg.jpg",
-    "available": true
-  }
-  ],
   "categories": [
     {
           "id": "buy-one-get-one",
@@ -372,6 +316,7 @@
           "image": "images/categories/premium-cheese.jpg",
           "items": [
             {"id": "florella-burrata-cheese-250-gm","brand": "Florella","name": "Florella Burrata Cheese 250 gm","unit": "250 gm","available": true,"image": "images/products/florella-burrata-cheese-250-gm.jpg","slabs": [{"minQty": 1,"price": 375.0}]},
+            {"id": "florella-bocconcini-fresh-200-gms","brand": "Florella","name": "Florella Bocconcini Fresh 200 gms","unit": "200 gms","available": true,"image": "images/products/florella-bocconcini-fresh-200-gms.jpg","slabs": [{"minQty": 1,"price": 240.0}]},
             {"id": "florella-ricotta-cheese-500-gm","brand": "Florella","name": "Florella Ricotta Cheese 500 gm","unit": "500 gm","available": true,"image": "images/products/florella-ricotta-cheese-500-gm.jpg","slabs": [{"minQty": 1,"price": 415.0}]},
             {"id": "imported-parmesan-cheese-1-kg","brand": "Imported","name": "Imported Parmesan Cheese 1 kg","unit": "1 kg","available": true,"image": "images/products/imported-parmesan-cheese-1-kg.jpg","slabs": [{"minQty": 1,"price": 1700.0}]},
             {"id": "imported-parmesan-block-approx-4-6-kg","brand": "Imported","name": "Imported Parmesan Block Approx 4.6 kg","unit": "Approx 4.6 kg","available": true,"image": "images/products/imported-parmesan-block-approx-4-6-kg.jpg","slabs": [{"minQty": 1,"price": 7245.0}]},
