@@ -51,7 +51,7 @@ html {
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', sans-serif;
-  background: var(--bg);
+  background: linear-gradient(180deg, #fffaf0 0%, #f4efe4 100%);
   color: var(--text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -1238,10 +1238,12 @@ FILTER SECTION
 PRODUCTS
 ========================= */
 .products-section {
+  background: linear-gradient(180deg, #fffaf0 0%, #f4efe4 100%);
   padding: 10px 0 156px;
 }
 
 .shortcut-products-section {
+  background: linear-gradient(180deg, #fffaf0 0%, #f4efe4 100%);
   padding: 10px 0 156px;
 }
 
@@ -1351,8 +1353,7 @@ PRODUCTS
   flex-direction: column;
   justify-content: flex-start;
   gap: 8px;
-  background:
-    linear-gradient(180deg, #FFFDF8 0%, #FFF8E8 100%);
+  background: linear-gradient(135deg, #fffdf7 0%, #fff8ea 100%);
   border: 1px solid #E8DFCF;
   border-radius: 20px;
   box-shadow: 0 12px 30px rgba(40, 30, 20, 0.08);
@@ -1396,9 +1397,7 @@ PRODUCTS
   width: 74px;
   aspect-ratio: 1;
   border-radius: 18px;
-  background:
-    radial-gradient(circle at 32% 24%, rgba(255, 253, 248, 0.98) 0%, rgba(255, 253, 248, 0) 40%),
-    linear-gradient(145deg, #EEF6EA 0%, #FFFDF8 52%, #FFF6DF 100%);
+  background: #ffffff;
   border: 1px solid #E8DFCF;
   display: flex;
   align-items: center;
