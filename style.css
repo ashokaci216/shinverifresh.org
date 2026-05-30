@@ -1434,6 +1434,7 @@ PRODUCTS
   flex-direction: column;
   gap: 2px;
   min-width: 0;
+  min-height: 100%;
 }
 
 .product-brand {
@@ -1452,6 +1453,7 @@ PRODUCTS
   letter-spacing: 0;
   color: #1F1A14;
   text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 .product-unit {
@@ -1472,7 +1474,7 @@ PRODUCTS
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-top: 0;
+  margin-top: auto;
   padding: 6px 1px 0;
 }
 
@@ -2866,15 +2868,29 @@ RESPONSIVE
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    gap: 8px;
   }
 
   .product-main {
-    grid-template-columns: 66px minmax(0, 1fr);
-    gap: 10px;
+    grid-template-columns: 116px minmax(0, 1fr);
+    gap: 12px;
   }
 
   .product-media {
-    width: 66px;
+    width: 116px;
+  }
+
+  .product-card-body {
+    gap: 3px;
+  }
+
+  .product-name {
+    font-size: 14.5px;
+    line-height: 1.24;
+  }
+
+  .product-base-price strong {
+    font-size: 17px;
   }
 
   .product-slab-qty,
@@ -2894,11 +2910,14 @@ RESPONSIVE
 
   .product-footer .add-btn {
     width: auto;
+    min-width: 66px;
+    padding-inline: 14px;
   }
 
   .product-card .qty-box {
     width: auto;
     justify-content: center;
+    flex-shrink: 0;
   }
 
   /* // Back To Category Top Button */

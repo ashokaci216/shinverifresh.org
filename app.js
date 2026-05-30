@@ -473,23 +473,23 @@ function getProductCardHTML(product, qty) {
         ${productBrand ? `<p class="product-brand">${productBrand}</p>` : ''}
         <h3 class="product-name">${product.name}</h3>
         ${productUnit ? `<p class="product-unit">${productUnit}</p>` : ''}
-      </div>
-    </div>
 
-    <div class="product-footer">
-      <div class="product-base-price" data-product-price="${product.id}">
-        <span>Current rate</span>
-        <strong>${formatCardPrice(activePrice)}/item</strong>
-      </div>
+        <div class="product-footer">
+          <div class="product-base-price" data-product-price="${product.id}">
+            <span>Current rate</span>
+            <strong>${formatCardPrice(activePrice)}/item</strong>
+          </div>
 
-      <div data-product-controls="${product.id}">
-        ${
-          qty > 0
-            ? getQtyControlHTML(product.id, qty)
-            : product.available === false
-              ? '<button class="add-btn" type="button" disabled>Unavailable</button>'
-              : `<button class="add-btn" onclick="addToCart('${product.id}', 'regular')">Add</button>`
-        }
+          <div data-product-controls="${product.id}">
+            ${
+              qty > 0
+                ? getQtyControlHTML(product.id, qty)
+                : product.available === false
+                  ? '<button class="add-btn" type="button" disabled>Unavailable</button>'
+                  : `<button class="add-btn" onclick="addToCart('${product.id}', 'regular')">Add</button>`
+            }
+          </div>
+        </div>
       </div>
     </div>
 
