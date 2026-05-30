@@ -103,6 +103,17 @@ const shortcutBackBtn = document.getElementById('shortcut-back-btn');
 const shortcutViewTitle = document.getElementById('shortcut-view-title');
 const shortcutProductList = document.getElementById('shortcut-product-list');
 const searchInput = document.getElementById('searchInput');
+const promoBannerTrack = document.getElementById('promo-banner-track');
+const SEARCH_PLACEHOLDER_LINES = [
+  'Search mozzarella, mayo, sliced cheese...',
+  'Search nori sheets, sushi vinegar, wasabi...',
+  'Search nuggets, popcorn, cheese balls, fries...',
+  'Search Wingreen, Nutrich, Golden Crown...',
+  'Search sauces, salami, sausage, chicken ham...',
+  'Search by product, brand or kitchen item...'
+];
+const SEARCH_PLACEHOLDER_INTERVAL = 3500;
+let searchPlaceholderIndex = 0;
 const searchSection = document.querySelector('.search-section');
 const categoryShowcaseSection = document.getElementById('products-section');
 const categoryGrid = document.getElementById('category-grid');
@@ -127,6 +138,9 @@ const heroSlides = heroSlider ? Array.from(heroSlider.querySelectorAll('.hero-sl
 let heroSlideIndex = 0;
 let heroSlideTimer = null;
 const HERO_SLIDE_INTERVAL = 3000;
+let promoBannerTimer = null;
+let promoBannerResumeTimer = null;
+const PROMO_BANNER_INTERVAL = 3600;
 let currentView = 'categoryGridView';
 let activeCategoryId = '';
 
@@ -1189,6 +1203,70 @@ function resetHeroSlider() {
 }
 
 /* =========================
+PROMO BANNER STRIP
+========================= */
+function getPromoBannerStep() {
+  if (!promoBannerTrack) return 0;
+
+  const firstBanner = promoBannerTrack.querySelector('.promo-banner');
+  if (!firstBanner) return 0;
+
+  const trackStyles = window.getComputedStyle(promoBannerTrack);
+  const gap = Number.parseFloat(trackStyles.columnGap || trackStyles.gap) || 0;
+  return firstBanner.getBoundingClientRect().width + gap;
+}
+
+function scrollPromoBanners() {
+  if (!promoBannerTrack) return;
+
+  const step = getPromoBannerStep();
+  if (!step) return;
+
+  const maxScrollLeft = promoBannerTrack.scrollWidth - promoBannerTrack.clientWidth;
+
+  if (promoBannerTrack.scrollLeft >= maxScrollLeft - 4) {
+    promoBannerTrack.scrollTo({ left: 0, behavior: 'smooth' });
+    return;
+  }
+
+  promoBannerTrack.scrollBy({ left: step, behavior: 'smooth' });
+}
+
+function startPromoBannerAutoScroll() {
+  if (!promoBannerTrack || promoBannerTimer) return;
+
+  promoBannerTimer = setInterval(scrollPromoBanners, PROMO_BANNER_INTERVAL);
+}
+
+function pausePromoBannerAutoScroll() {
+  if (promoBannerTimer) {
+    clearInterval(promoBannerTimer);
+    promoBannerTimer = null;
+  }
+}
+
+function resumePromoBannerAutoScroll() {
+  if (promoBannerResumeTimer) clearTimeout(promoBannerResumeTimer);
+
+  promoBannerResumeTimer = setTimeout(startPromoBannerAutoScroll, PROMO_BANNER_INTERVAL);
+}
+
+function handlePromoBannerManualScroll() {
+  pausePromoBannerAutoScroll();
+  resumePromoBannerAutoScroll();
+}
+
+function initPromoBannerAutoScroll() {
+  if (!promoBannerTrack) return;
+
+  ['pointerdown', 'touchstart', 'wheel'].forEach(eventName => {
+    promoBannerTrack.addEventListener(eventName, handlePromoBannerManualScroll, { passive: true });
+  });
+
+  startPromoBannerAutoScroll();
+}
+
+/* =========================
 FETCH DATA
 ========================= */
 async function loadMenuData() {
@@ -1650,6 +1728,20 @@ function closeCart() {
 /* =========================
 SEARCH
 ========================= */
+function rotateSearchPlaceholder() {
+  if (!searchInput || searchInput.value) return;
+
+  searchPlaceholderIndex = (searchPlaceholderIndex + 1) % SEARCH_PLACEHOLDER_LINES.length;
+  searchInput.setAttribute('placeholder', SEARCH_PLACEHOLDER_LINES[searchPlaceholderIndex]);
+}
+
+function initSearchPlaceholderRotation() {
+  if (!searchInput) return;
+
+  searchInput.setAttribute('placeholder', SEARCH_PLACEHOLDER_LINES[searchPlaceholderIndex]);
+  setInterval(rotateSearchPlaceholder, SEARCH_PLACEHOLDER_INTERVAL);
+}
+
 function handleSearch() {
   applyFilters();
 }
@@ -1747,6 +1839,7 @@ EVENT LISTENERS
 cartBar.addEventListener('click', openCart);
 cartBackdrop.addEventListener('click', closeCart);
 closeCartBtn.addEventListener('click', closeCart);
+initSearchPlaceholderRotation();
 searchInput.addEventListener('input', handleSearch);
 window.addEventListener('scroll', updateBackToCategoryTopButton, { passive: true });
 
@@ -1855,4 +1948,5 @@ if ('serviceWorker' in navigator) {
 }
 
 initHeroSlider();
+initPromoBannerAutoScroll();
 loadMenuData();
