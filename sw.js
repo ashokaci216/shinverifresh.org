@@ -1,11 +1,15 @@
-const CACHE_NAME = 'shivneri-fresh-v20260628-images-menu-update';
+const CACHE_NAME = 'shivneri-fresh-v20260718-welcome-screen';
+
 const URLS_TO_CACHE = [
-  '/',
+  './',
   'index.html',
   'style.css?v=20260424-checkout',
   'app.js?v=20260424-checkout',
   'menu.json',
-  'manifest.webmanifest'
+  'manifest.webmanifest',
+  'welcome-screen.css',
+  'welcome-screen.js',
+  'images/logo/logo-shivneri-fresh-welcome.png'
 ];
 
 self.addEventListener('install', event => {

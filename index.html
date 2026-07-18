@@ -20,8 +20,35 @@
   <meta name="theme-color" content="#0f8f45" />
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css?v=20260424-checkout" />
+  <link rel="stylesheet" href="welcome-screen.css?v=20260717-test" />
 </head>
-<body>
+<body class="welcome-screen-open">
+  <section
+    id="welcome-screen"
+    class="welcome-screen"
+    tabindex="0"
+    role="button"
+    aria-labelledby="welcome-screen-title"
+    aria-describedby="welcome-screen-subtitle"
+  >
+    <div class="welcome-screen__header">
+      <h2 id="welcome-screen-title" class="welcome-screen__title">Welcome to Shivneri Fresh</h2>
+      <p id="welcome-screen-subtitle" class="welcome-screen__subtitle">Everything Your Professional Kitchen Needs</p>
+    </div>
+
+    <div class="welcome-screen__stage" aria-hidden="true">
+      <div class="welcome-screen__center">
+        <img
+          class="welcome-screen__logo"
+          src="images/logo/logo-shivneri-fresh-welcome.png"
+          alt=""
+          draggable="false"
+        />
+      </div>
+
+      <div class="welcome-screen__orbit" id="welcome-orbit"></div>
+    </div>
+  </section>
   <!-- =========================
   HEADER
   ========================= -->
@@ -254,7 +281,7 @@
       <span id="cart-bar-count" class="cart-bar-count">0 items</span>
       <span class="cart-bar-text">View Cart</span>
     </div>
-    <strong id="cart-bar-total" class="cart-bar-total">â‚¹0</strong>
+    <strong id="cart-bar-total" class="cart-bar-total">Ã¢â€šÂ¹0</strong>
   </button>
 
   <!-- Cart Drawer -->
@@ -268,7 +295,7 @@
           <p class="cart-mini-title">SHIVNERI FRESH</p>
           <h2 class="cart-title">Your Cart</h2>
         </div>
-        <button id="close-cart-btn" class="close-cart-btn" type="button" aria-label="Close cart">×</button>
+        <button id="close-cart-btn" class="close-cart-btn" type="button" aria-label="Close cart">&times;</button>
       </div>
 
       <!-- Full Scroll Area -->
@@ -282,17 +309,17 @@
         <div class="cart-summary">
           <div class="summary-row">
             <span>Subtotal</span>
-            <strong id="cart-subtotal">â‚¹0</strong>
+            <strong id="cart-subtotal">Ã¢â€šÂ¹0</strong>
           </div>
 
           <div class="summary-row">
             <span>Delivery Fee</span>
-            <strong id="cart-delivery">â‚¹0</strong>
+            <strong id="cart-delivery">Ã¢â€šÂ¹0</strong>
           </div>
 
           <div class="summary-row total-row">
             <span>Total</span>
-            <strong id="cart-total">â‚¹0</strong>
+            <strong id="cart-total">Ã¢â€šÂ¹0</strong>
           </div>
         </div>
 
@@ -373,7 +400,7 @@
 
         <div class="footer-section">
           <h4>Business Info</h4>
-          <p>Business Hours: 9 AM – 9 PM</p>
+          <p>Business Hours: 9 AM â€“ 9 PM</p>
           <p><a href="https://wa.me/919867378209" target="_blank" rel="noopener">Fast ordering on WhatsApp</a></p>
         </div>
 
@@ -415,8 +442,11 @@
     </div>
   </div>
 
+  <script src="welcome-screen.js?v=20260717-test"></script>
   <script src="app.js?v=20260424-checkout"></script>
 </body>
 </html>
+
+
 
 
