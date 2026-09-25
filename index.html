@@ -356,6 +356,21 @@
           </div>
 
           <div class="field-group">
+            <label id="payment-preference-label">Payment Preference</label>
+            <div class="order-type-row" role="radiogroup" aria-labelledby="payment-preference-label" aria-required="true">
+              <label class="order-type-pill">
+                <input type="radio" id="cart-payment-cash" name="paymentPreference" value="Cash" required />
+                <span>Cash</span>
+              </label>
+
+              <label class="order-type-pill">
+                <input type="radio" name="paymentPreference" value="UPI / Online" required />
+                <span>UPI / Online</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field-group">
             <label for="cart-note">Notes</label>
             <textarea id="cart-note" rows="3" placeholder="Any special instructions"></textarea>
           </div>
@@ -443,7 +458,7 @@
   </div>
 
   <script src="welcome-screen.js?v=20260717-test"></script>
-  <script src="app.js?v=20260424-checkout"></script>
+  <script src="app.js?v=20260925-payment-preference"></script>
 </body>
 </html>
 

@@ -1,10 +1,10 @@
-const CACHE_NAME = 'shivneri-fresh-v20260718-welcome-screen';
+const CACHE_NAME = 'shivneri-fresh-v20260925-payment-preference';
 
 const URLS_TO_CACHE = [
   './',
   'index.html',
   'style.css?v=20260424-checkout',
-  'app.js?v=20260424-checkout',
+  'app.js?v=20260925-payment-preference',
   'menu.json',
   'manifest.webmanifest',
   'welcome-screen.css',

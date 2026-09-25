@@ -1759,6 +1759,7 @@ function buildWhatsAppMessage() {
   const name = cartName.value.trim();
   const phone = cartPhone.value.trim();
   const address = cartAddress.value.trim();
+  const paymentPreference = document.querySelector('input[name="paymentPreference"]:checked')?.value;
   const note = cartNote.value.trim();
 
   let message = `*${checkoutStoreName}*\n`;
@@ -1778,6 +1779,7 @@ function buildWhatsAppMessage() {
   message += `*Name:* ${name || '-'}\n`;
   message += `*Phone:* ${phone || '-'}\n`;
   message += `*Address:* ${address || '-'}\n`;
+  message += `Payment Preference: ${paymentPreference}\n`;
   message += `*Notes:* ${note || '-'}\n`;
 
   return `https://wa.me/${CHECKOUT_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
@@ -1795,6 +1797,48 @@ function openWhatsAppCheckout(whatsappURL) {
     window.location.assign(whatsappURL);
   } catch (error) {
     window.location.href = whatsappURL;
+  }
+}
+
+function logOrderToGoogleSheets(cartItems) {
+  try {
+    const subtotal = getSubtotal();
+    const deliveryFee = getDeliveryFee();
+    const orderData = {
+      customerName: cartName.value.trim(),
+      phone: cartPhone.value.trim(),
+      orderType: getOrderType(),
+      address: cartAddress.value.trim(),
+      paymentPreference: document.querySelector('input[name="paymentPreference"]:checked')?.value || '',
+      subtotal,
+      deliveryFee,
+      totalAmount: subtotal + deliveryFee,
+      totalQty: getCartItemCount(),
+      notes: cartNote.value.trim(),
+      items: cartItems.map(item => {
+        const rate = getItemPrice(item, item.qty);
+        return {
+          name: item.name,
+          category: typeof item.category === 'string' ? item.category : '',
+          qty: item.qty,
+          rate,
+          total: rate * item.qty
+        };
+      })
+    };
+
+    // Send JSON as plain text to avoid a CORS preflight. The response is opaque.
+    fetch('https://script.google.com/macros/s/AKfycbwr7RxYmWLv75CNKLhyZjkOCxyue2qdvKVke6ZrZI7u94SDWl1VHqfO0era7UWdPCSK/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+      body: JSON.stringify(orderData),
+      keepalive: true
+    }).catch(error => {
+      console.warn('Order logging request failed:', error);
+    });
+  } catch (error) {
+    console.warn('Order logging could not be started:', error);
   }
 }
 
@@ -1829,7 +1873,14 @@ function handleCheckout(event) {
     return;
   }
 
+  if (!document.querySelector('input[name="paymentPreference"]:checked')) {
+    alert('Please select a payment preference.');
+    focusField(document.getElementById('cart-payment-cash'));
+    return;
+  }
+
   const whatsappURL = buildWhatsAppMessage();
+  logOrderToGoogleSheets(cartItems);
   openWhatsAppCheckout(whatsappURL);
 }
 
