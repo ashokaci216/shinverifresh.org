@@ -507,7 +507,7 @@ function getProductCardHTML(product, qty) {
       </div>
     </div>
 
-    ${slabRows ? `<div class="product-slabs"><span class="product-slabs-label">Bulk savings</span>${slabRows}</div>` : ''}
+    ${slabRows ? `<div class="product-slabs"><span class="product-slabs-label">Bulk savings</span><div class="product-slabs-columns"><span>QTY</span><span>PRICE / ITEM</span></div>${slabRows}</div>` : ''}
   `;
 }
 
