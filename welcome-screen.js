@@ -4,6 +4,12 @@
 
   if (!welcomeScreen || !orbitEl) return;
 
+  if (['reload', 'back_forward'].includes(window.shivneriNavigationType)) {
+    document.body.classList.remove('welcome-screen-open');
+    welcomeScreen.remove();
+    return;
+  }
+
   const welcomeCategories = [
     { id: 'skylark-frozen', name: 'Skylark Frozen' },
     { id: 'wingreen-mayo', name: 'Wingreen Mayo' },

@@ -12,6 +12,16 @@
   </script>
 
   <meta charset="UTF-8" />
+  <script>
+    // Navigation Timing identifies this document load, not every visit in a session.
+    window.shivneriNavigationType = window.performance?.getEntriesByType?.('navigation')?.[0]?.type
+      || ({ 1: 'reload', 2: 'back_forward' }[window.performance?.navigation?.type] || 'navigate');
+    if (['reload', 'back_forward'].includes(window.shivneriNavigationType)) {
+      document.documentElement.classList.add('restoring-page');
+    }
+  </script>
+  <style>html.restoring-page #welcome-screen { display: none; }</style>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Shivneri Fresh | Wholesale Food Supplier in Vashi, Navi Mumbai</title>
   <meta name="description" content="Shivneri Fresh supplies frozen foods, sauces, imported cheese, seafood, pasta, sushi products and kitchen ingredients to cafes, restaurants, cloud kitchens and hotels in Navi Mumbai. Order quickly on WhatsApp." />
@@ -19,7 +29,7 @@
   <link rel="manifest" href="manifest.webmanifest" />
   <meta name="theme-color" content="#0f8f45" />
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20260424-checkout" />
+  <link rel="stylesheet" href="style.css?v=20261027-two-step-cart" />
   <link rel="stylesheet" href="welcome-screen.css?v=20260717-test" />
 </head>
 <body class="welcome-screen-open">
@@ -52,103 +62,52 @@
   <!-- =========================
   HEADER
   ========================= -->
-  <header class="site-header">
+  <header class="site-header phase-one-header">
     <div class="container header-wrap">
-      <div class="brand-block">
-        <p class="eyebrow">RESTAURANT SUPPLY PARTNER</p>
-        <img class="brand-logo" id="store-name" src="images/logo/shivneri-logo.png" alt="Shivneri Fresh">
-        <p class="brand-subtitle">Trusted supplies for cafes, restaurants & cloud kitchens</p>
-      </div>
+      <a class="brand-block" href="./" aria-label="Shivneri Fresh home">
+        <img class="brand-logo" id="store-name" src="images/logo/shivneri-logo.png" alt="Shivneri Fresh" width="168">
+      </a>
+      <p class="header-partner">RESTAURANT SUPPLY PARTNER<span>For cafes, restaurants &amp; cloud kitchens</span></p>
+      <nav class="header-actions" aria-label="Main navigation">
+        <a class="header-browse" href="#products-section">Browse products</a>
+        <a class="header-icon" href="#searchInput" aria-label="Search products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a>
+        <button id="header-cart-button" class="header-icon" type="button" onclick="openCart()" aria-label="Open shopping cart" aria-controls="cart-drawer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 3h3l2.5 12h11l2-8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg><span id="header-cart-badge" class="header-cart-badge" hidden aria-hidden="true">0</span></button>
+      </nav>
     </div>
   </header>
 
   <!-- =========================
   HERO
   ========================= -->
-  <section class="hero-section">
+  <section class="hero-section phase-one-hero" aria-labelledby="wholesale-title">
     <div class="container">
-      <div class="hero-slider" id="hero-slider">
-        <div class="hero-slide active" style="background-image: url('images/hero/hero-banner-1.jpg');"></div>
-        <div class="hero-slide" style="background-image: url('images/hero/hero-banner-2.jpg');"></div>
-        <div class="hero-slide" style="background-image: url('images/hero/hero-banner-3.jpg');"></div>
+      <div class="hero-slider" id="hero-slider" role="group" aria-roledescription="carousel" aria-label="Wholesale food highlights">
+        <div class="hero-slide hero-slide-supplies active" style="background-image: url('images/hero/hero-banner-1.jpg');" role="img" aria-label="Wholesale kitchen ingredients, cheese, sauces and seafood"></div>
+        <div class="hero-slide" style="background-image: url('images/hero/hero-banner-2.jpg');" role="img" aria-label="Crispy chicken, fries, nuggets and pizza pockets" aria-hidden="true"></div>
+        <div class="hero-slide" style="background-image: url('images/hero/hero-banner-3.jpg');" role="img" aria-label="Golden fries, crispy snacks and pizza pockets" aria-hidden="true"></div>
 
         <div class="hero-card">
-          <h1 class="sr-only">Wholesale Food Supply for Restaurants, Cafes & Cloud Kitchens</h1>
+          <p class="hero-kicker">YOUR KITCHEN. OUR COMMITMENT.</p>
+          <h1 id="wholesale-title">Wholesale Supplies for <span>Professional Kitchens</span></h1>
+          <p class="hero-description">Quality ingredients. Bulk supply.<br>Trusted by cafes, restaurants &amp; cloud kitchens.</p>
 
           <div class="hero-actions">
-            <a href="./#products-section" class="hero-btn solid-btn">View Products</a>
+            <a id="hero-view-products" href="#products-section" class="hero-btn solid-btn">View Products</a>
             <a id="hero-whatsapp-btn" href="https://wa.me/919867378209" target="_blank" rel="noopener" class="hero-btn outline-btn">Chat on WhatsApp</a>
           </div>
 
           <div class="hero-points">
-            <span>Direct ordering</span>
-            <span>Mobile friendly</span>
-            <span>Quick checkout</span>
+            <span>Reliable supply</span>
+            <span>Wide range</span>
+            <span>Fast ordering</span>
           </div>
         </div>
 
-        <div class="hero-dots" id="hero-dots" aria-label="Hero slide navigation"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================
-  PROMO BANNER STRIP
-  ========================= -->
-  <section class="promo-strip-section" aria-labelledby="promo-strip-title">
-    <div class="container">
-      <div class="promo-strip-head">
-        <h2 id="promo-strip-title">Supply Highlights</h2>
-      </div>
-
-      <div class="promo-strip" id="promo-banner-track" aria-label="Supply highlights">
-        <article class="promo-banner promo-green">
-          <span class="promo-badge">WHOLESALE BRAND</span>
-          <h3>Wingreens Mayo &amp; Dips</h3>
-          <p>Wholesale supply for cafes &amp; cloud kitchens</p>
-        </article>
-
-        <article class="promo-banner promo-blue">
-          <span class="promo-badge">FROZEN RANGE</span>
-          <h3>Nutrich Frozen Products</h3>
-          <p>Best rates on fast-moving frozen items</p>
-        </article>
-
-        <article class="promo-banner promo-yellow">
-          <span class="promo-badge">CHEESE RANGE</span>
-          <h3>Premium Cheese Range</h3>
-          <p>Mozzarella, burrata, bocconcini &amp; parmesan</p>
-        </article>
-
-        <article class="promo-banner promo-peach">
-          <span class="promo-badge">JAPANESE ESSENTIALS</span>
-          <h3>Japanese Essentials</h3>
-          <p>Nori sheets, sushi vinegar, wasabi &amp; sauces</p>
-        </article>
-
-        <article class="promo-banner promo-orange">
-          <span class="promo-badge">FROZEN SNACKS</span>
-          <h3>Frozen Snacks</h3>
-          <p>Fries, nuggets, popcorn &amp; cheese balls</p>
-        </article>
-
-        <article class="promo-banner promo-mint">
-          <span class="promo-badge">CAFE REGULAR</span>
-          <h3>Cafe Regular Items</h3>
-          <p>Mayo, syrups, sauces &amp; dips</p>
-        </article>
-
-        <article class="promo-banner promo-purple">
-          <span class="promo-badge">IMPORTED RANGE</span>
-          <h3>Imported &amp; Gourmet</h3>
-          <p>Selected imported products for kitchens</p>
-        </article>
-
-        <article class="promo-banner promo-gold">
-          <span class="promo-badge">BULK SUPPORT</span>
-          <h3>Bulk Order Support</h3>
-          <p>Better rates for regular quantity buyers</p>
-        </article>
+        <div class="hero-slider-controls">
+          <button class="hero-arrow" id="hero-prev" type="button" aria-label="Previous hero image">&#8249;</button>
+          <div class="hero-dots" id="hero-dots" role="group" aria-label="Hero slide navigation"></div>
+          <button class="hero-arrow" id="hero-next" type="button" aria-label="Next hero image">&#8250;</button>
+        </div>
       </div>
     </div>
   </section>
@@ -156,16 +115,17 @@
   <!-- =========================
   SEARCH & FILTERS
   ========================= -->
-  <section class="search-section">
+  <section class="search-section phase-one-search">
     <div class="container">
       <div class="search-card">
         <div class="search-copy">
-          <h2>Find Products Faster</h2>
+          <h2>Find your kitchen essentials</h2>
           <p>Search by product, brand, category or kitchen item</p>
         </div>
 
         <div class="search-input-wrap">
-          <span class="search-icon" aria-hidden="true">&#128269;</span>
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+          <label class="sr-only" for="searchInput">Search products, brands or categories</label>
           <input type="text" id="searchInput" placeholder="Search mozzarella, mayo, sliced cheese..." />
         </div>
       </div>
@@ -213,6 +173,16 @@
       </div>
 
       <div id="category-grid" class="category-grid" aria-label="Shop by category"></div>
+    </div>
+  </section>
+
+  <section id="popular-products-section" class="popular-products-section hidden" aria-labelledby="popular-products-title">
+    <div class="container">
+      <div class="popular-products-head">
+        <h2 id="popular-products-title">Popular Products</h2>
+        <p>Fast-moving essentials for professional kitchens</p>
+      </div>
+      <div id="popular-product-list" class="popular-product-grid"></div>
     </div>
   </section>
 
@@ -276,87 +246,109 @@
   </button>
 
   <!-- Floating Cart Bar -->
-  <button id="cart-bar" class="cart-bar hidden" type="button" aria-label="Open cart">
-    <div class="cart-bar-left">
-      <span id="cart-bar-count" class="cart-bar-count">0 items</span>
-      <span class="cart-bar-text">View Cart</span>
-    </div>
-    <strong id="cart-bar-total" class="cart-bar-total">Ã¢â€šÂ¹0</strong>
+  <button id="cart-bar" class="cart-bar hidden" type="button" aria-label="Open cart" aria-controls="cart-drawer" aria-expanded="false">
+    <svg class="cart-bar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 3h3l2.5 12h11l2-8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+    <span class="cart-bar-left">
+      <span id="cart-bar-count" class="cart-bar-count">0 units</span>
+      <strong id="cart-bar-total" class="cart-bar-total">&#8377;0</strong>
+    </span>
+    <span class="cart-bar-text">View Cart <span aria-hidden="true">&#8594;</span></span>
   </button>
 
   <!-- Cart Drawer -->
-  <div id="cart-drawer" class="cart-drawer" aria-hidden="true">
+  <div id="cart-drawer" class="cart-drawer" aria-hidden="true" inert>
     <div id="cart-backdrop" class="cart-backdrop"></div>
 
-    <aside class="cart-panel" role="dialog" aria-label="Shopping cart">
+    <aside class="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">
       <!-- Header -->
       <div class="cart-header">
         <div>
           <p class="cart-mini-title">SHIVNERI FRESH</p>
-          <h2 class="cart-title">Your Cart</h2>
+          <h2 id="cart-title" class="cart-title">Your Cart</h2>
+          <p id="cart-header-count" class="cart-header-count" aria-live="polite">0 units</p>
         </div>
-        <button id="close-cart-btn" class="close-cart-btn" type="button" aria-label="Close cart">&times;</button>
+        <button id="close-cart-btn" class="close-cart-btn" type="button" aria-label="Close cart and checkout">&times;</button>
       </div>
 
+      <ol class="cart-steps" aria-label="Order progress">
+        <li id="cart-progress-cart" aria-current="step"><span aria-hidden="true">1</span> Your cart</li>
+        <li id="cart-progress-checkout"><span aria-hidden="true">2</span> Checkout</li>
+      </ol>
+
       <!-- Full Scroll Area -->
-      <div class="cart-scroll-area">
+      <div id="cart-scroll-area" class="cart-scroll-area">
+        <section id="cart-review-step" aria-label="Review your cart">
         <!-- Items -->
         <div id="cart-items" class="cart-items">
           <div class="cart-empty">Your cart is empty.</div>
         </div>
 
+        <div class="cart-fulfilment">
+          <h3 id="cart-order-type-label" class="cart-section-title">How would you like your order?</h3>
+          <div class="order-type-row" role="radiogroup" aria-labelledby="cart-order-type-label">
+            <label class="order-type-pill">
+              <input type="radio" name="orderType" value="Delivery" checked />
+              <span>Delivery</span>
+            </label>
+            <label class="order-type-pill">
+              <input type="radio" name="orderType" value="Pickup" />
+              <span>Pickup</span>
+            </label>
+          </div>
+          <p class="cart-delivery-note">Delivery: &#8377;40 below &#8377;300. Free delivery at &#8377;300 or above. Pickup is always free.</p>
+        </div>
+
         <!-- Summary -->
         <div class="cart-summary">
+          <h3 class="cart-section-title">Order summary</h3>
           <div class="summary-row">
             <span>Subtotal</span>
-            <strong id="cart-subtotal">Ã¢â€šÂ¹0</strong>
+            <strong id="cart-subtotal">&#8377;0</strong>
           </div>
 
           <div class="summary-row">
-            <span>Delivery Fee</span>
-            <strong id="cart-delivery">Ã¢â€šÂ¹0</strong>
+            <span>Delivery charge</span>
+            <strong id="cart-delivery">&#8377;0</strong>
           </div>
 
           <div class="summary-row total-row">
             <span>Total</span>
-            <strong id="cart-total">Ã¢â€šÂ¹0</strong>
+            <strong id="cart-total">&#8377;0</strong>
           </div>
         </div>
 
+        <button id="continue-checkout-btn" class="checkout-btn cart-continue-btn" type="button" disabled>Continue to Checkout <span aria-hidden="true">&#8594;</span></button>
+        </section>
+
+        <section id="cart-checkout-step" aria-label="Checkout details" hidden inert>
+          <button id="back-to-cart-btn" class="cart-back-btn" type="button"><span aria-hidden="true">&#8592;</span> Back to Cart</button>
+          <div class="checkout-order-recap">
+            <div><span id="checkout-order-type">Delivery</span><span id="checkout-unit-count">0 units</span></div>
+            <div><span>Order total</span><strong id="checkout-order-total" aria-live="polite">&#8377;0</strong></div>
+          </div>
+
         <!-- Form -->
         <div class="cart-form">
-          <div class="field-group">
-            <label>Order Type</label>
-            <div class="order-type-row">
-              <label class="order-type-pill">
-                <input type="radio" name="orderType" value="Delivery" checked />
-                <span>Delivery</span>
-              </label>
+          <h3 id="checkout-details-title" class="cart-section-title" tabindex="-1">Your details</h3>
+          <p class="checkout-details-note">Complete your details to send your order on WhatsApp.</p>
 
-              <label class="order-type-pill">
-                <input type="radio" name="orderType" value="Pickup" />
-                <span>Pickup</span>
-              </label>
-            </div>
+          <div class="field-group">
+            <label for="cart-name">Name <span class="cart-required">(required)</span></label>
+            <input type="text" id="cart-name" autocomplete="name" placeholder="Enter your name" required aria-required="true" />
           </div>
 
           <div class="field-group">
-            <label for="cart-name">Name</label>
-            <input type="text" id="cart-name" placeholder="Enter your name" />
+            <label for="cart-phone">Phone <span class="cart-required">(required)</span></label>
+            <input type="tel" id="cart-phone" autocomplete="tel" inputmode="tel" placeholder="Enter your phone number" required aria-required="true" />
+          </div>
+
+          <div id="cart-address-field" class="field-group">
+            <label for="cart-address">Address <span class="cart-required">(required for delivery)</span></label>
+            <textarea id="cart-address" autocomplete="street-address" rows="2" placeholder="Enter delivery address" required aria-required="true"></textarea>
           </div>
 
           <div class="field-group">
-            <label for="cart-phone">Phone</label>
-            <input type="tel" id="cart-phone" placeholder="Enter your phone number" />
-          </div>
-
-          <div class="field-group">
-            <label for="cart-address">Address</label>
-            <textarea id="cart-address" rows="3" placeholder="Enter delivery address"></textarea>
-          </div>
-
-          <div class="field-group">
-            <label id="payment-preference-label">Payment Preference</label>
+            <label id="payment-preference-label">Payment preference <span class="cart-required">(required)</span></label>
             <div class="order-type-row" role="radiogroup" aria-labelledby="payment-preference-label" aria-required="true">
               <label class="order-type-pill">
                 <input type="radio" id="cart-payment-cash" name="paymentPreference" value="Cash" required />
@@ -371,12 +363,14 @@
           </div>
 
           <div class="field-group">
-            <label for="cart-note">Notes</label>
-            <textarea id="cart-note" rows="3" placeholder="Any special instructions"></textarea>
+            <label for="cart-note">Notes <span class="cart-required">(optional)</span></label>
+            <textarea id="cart-note" rows="2" placeholder="Any special instructions"></textarea>
           </div>
 
           <button id="checkout-btn" class="checkout-btn" type="button">Order on WhatsApp</button>
+          <p class="checkout-payment-note">Payment preference only. No payment is collected on this website.</p>
         </div>
+        </section>
       </div>
     </aside>
   </div>
@@ -384,6 +378,67 @@
   <!-- =========================
   FOOTER
   ========================= -->
+  <!-- =========================
+  PROMO BANNER STRIP
+  ========================= -->
+  <section class="promo-strip-section" aria-labelledby="promo-strip-title">
+    <div class="container">
+      <div class="promo-strip-head">
+        <h2 id="promo-strip-title">Supply Highlights</h2>
+      </div>
+
+      <div class="promo-strip" id="promo-banner-track" aria-label="Supply highlights">
+        <article class="promo-banner promo-green">
+          <span class="promo-badge">WHOLESALE BRAND</span>
+          <h3>Wingreens Mayo &amp; Dips</h3>
+          <p>Wholesale supply for cafes &amp; cloud kitchens</p>
+        </article>
+
+        <article class="promo-banner promo-blue">
+          <span class="promo-badge">FROZEN RANGE</span>
+          <h3>Nutrich Frozen Products</h3>
+          <p>Best rates on fast-moving frozen items</p>
+        </article>
+
+        <article class="promo-banner promo-yellow">
+          <span class="promo-badge">CHEESE RANGE</span>
+          <h3>Premium Cheese Range</h3>
+          <p>Mozzarella, burrata, bocconcini &amp; parmesan</p>
+        </article>
+
+        <article class="promo-banner promo-peach">
+          <span class="promo-badge">JAPANESE ESSENTIALS</span>
+          <h3>Japanese Essentials</h3>
+          <p>Nori sheets, sushi vinegar, wasabi &amp; sauces</p>
+        </article>
+
+        <article class="promo-banner promo-orange">
+          <span class="promo-badge">FROZEN SNACKS</span>
+          <h3>Frozen Snacks</h3>
+          <p>Fries, nuggets, popcorn &amp; cheese balls</p>
+        </article>
+
+        <article class="promo-banner promo-mint">
+          <span class="promo-badge">CAFE REGULAR</span>
+          <h3>Cafe Regular Items</h3>
+          <p>Mayo, syrups, sauces &amp; dips</p>
+        </article>
+
+        <article class="promo-banner promo-purple">
+          <span class="promo-badge">IMPORTED RANGE</span>
+          <h3>Imported &amp; Gourmet</h3>
+          <p>Selected imported products for kitchens</p>
+        </article>
+
+        <article class="promo-banner promo-gold">
+          <span class="promo-badge">BULK SUPPORT</span>
+          <h3>Bulk Order Support</h3>
+          <p>Better rates for regular quantity buyers</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="proof-section" aria-labelledby="proof-title">
     <div class="container">
       <div class="proof-wrap">
@@ -457,8 +512,8 @@
     </div>
   </div>
 
-  <script src="welcome-screen.js?v=20260717-test"></script>
-  <script src="app.js?v=20260925-payment-preference"></script>
+  <script src="welcome-screen.js?v=20261025-refresh"></script>
+  <script src="app.js?v=20261027-two-step-cart"></script>
 </body>
 </html>
 
