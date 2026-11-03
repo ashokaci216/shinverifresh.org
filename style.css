@@ -2303,6 +2303,12 @@ FOOTER
   opacity: 0.9;
 }
 
+.footer-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+}
+
 .footer-section p:last-child {
   margin-bottom: 0;
 }
